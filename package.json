@@ -23,5 +23,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "main": "index.js",
+  "repository": "git@github.com:TaylorRoy/VLCMLeadScanner.git",
+  "author": "jessicadoucette <jessicadoucette15@gmail.com>",
+  "license": "MIT"
 }
