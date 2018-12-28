@@ -1,15 +1,22 @@
 import axios from "axios";
 
-// Export an object containing methods we'll use for accessing the Dog.Ceo API
-
 export default {
-  getRandomDog: function() {
-    return axios.get("https://dog.ceo/api/breeds/image/random");
+  // Gets all books
+  getBooks: function(req) {
+    console.log("in getBooks API", req);
+    return axios.get("/api/books");
   },
-  getDogsOfBreed: function(breed) {
-    return axios.get("https://dog.ceo/api/breed/" + breed + "/images");
-  },
-  getBaseBreedsList: function() {
-    return axios.get("https://dog.ceo/api/breeds/list");
+  // Gets the book with the given id
+  // getBooks: function(id) {
+  //   return axios.get("/api/books/" + id);
+  // },
+  // // Deletes the book with the given id
+  // deleteBook: function(id) {
+  //   return axios.delete("/api/books/" + id);
+  // },
+  // Saves a book to the database
+  saveBook: function(bookData) {
+    console.log("In saveBook API");
+    return axios.post("/api/books", bookData);
   }
 };
