@@ -1,9 +1,20 @@
 const db = require("../models");
+var fs = require("fs");
 
 // Defining methods for the booksController
 module.exports = {
+  readFile: function (req, res) {
+    console.log("in readFile")
+    fs.readFile("results.txt", "utf8", function (error, data) {
+
+      // If the code experiences any errors it will log the error to the console.
+      if (error) {
+        return console.log("your got an error", error);
+      }
+      console.log("results.txt", data);
+    })
+  },
   findAll: function(req, res) {
-    console.log("in findAll", req.data);
     db.Scan
       .find(req.query)
       // .sort({ date: -1 })
