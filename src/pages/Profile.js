@@ -65,13 +65,16 @@ class Profile extends Component {
     }
     console.log("jsonArray befor join", jsonArray);
 
+    //loop through jsonArray and join data inside of array into string based on commas
     for (var i =0; i<jsonArray.length; i++) {
       csvRow.push(jsonArray[i].join(","))
     }
     console.log("csvRow after join", csvRow);
+    //add %0A where there is a space to indicate where csv file should start a new line
     var csvString = csvRow.join("%0A");
     console.log("csvString", csvString);
 
+    //output csv file
     var a = document.createElement("a");
     a.href = 'data:attachment/csv,' + csvString;
     a.target = "_Blank";
