@@ -1,8 +1,8 @@
 .hero {
-  height: 500px;
+  height: 100vh;
   background-size: cover;
   background-position: center;
-  position: relative;
+	position: relative;
 }
 
 .hero::after {
@@ -30,4 +30,33 @@
   font-size: 60px;
   padding-top: 140px;
   margin-top: 0;
+}
+
+.banner {
+	height: 400px;
+	margin-top: 80px;
+}
+
+@media screen and (max-width: 712px) {
+	.banner {
+		height: 300px;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.banner {
+		height: 250px;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.banner {
+		height: 200px;
+	}
+}
+
+@media screen and (max-width: 356px) {
+	.banner {
+		height: 150px;
+	}
 }
