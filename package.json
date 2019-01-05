@@ -2,26 +2,25 @@
   "name": "react-template",
   "version": "0.1.0",
   "main": "server.js",
-  "proxy": "http://localhost:3001/",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "fs": "^0.0.1-security",
+    "if-env": "^1.0.4",
     "html2canvas": "^1.0.0-alpha.12",
     "jspdf": "^1.5.3",
     "mongodb": "^3.1.10",
-    "mongoose": "^5.4.0",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.1"
+    "mongoose": "^5.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "install": "cd client && yarn install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -31,5 +30,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "repository": "git@github.com:TaylorRoy/VLCMLeadScanner.git",
+  "author": "jessicadoucette <jessicadoucette15@gmail.com>",
+  "license": "MIT"
 }

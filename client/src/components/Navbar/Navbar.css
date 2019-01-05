@@ -1,0 +1,17 @@
+
+
+.bg-dark {
+	background-color: black !important;
+	padding: 20px 0;
+}
+
+h1 {
+	color: #E0CD1A;
+}
+
+.logout {
+	color: #E0CD1A;
+	position: fixed;
+	right: 30px;
+	font-size: 30px;
+}
