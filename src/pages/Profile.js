@@ -171,7 +171,7 @@ class Profile extends Component {
         <button onClick={this.readFile} className="reportButton">Report</button>
 
         <Jumbotron>
-          <h1>Books On My List</h1>
+          <h1>List of Leads</h1>
         </Jumbotron>
         {this.state.leads.length ? (
           <List>
