@@ -1,14 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 const Navbar = props => (
-  <nav className="navbar navbar-expand-lg navbar-light bg-light">
-    <Link className="navbar-brand" to="/">
+  <nav className="navbar navbar-expand-lg bg-dark justify-content-center">
+	{<h1>HP Lead Scanner</h1>}
+	{<p className="logout"><i class="fas fa-sign-out-alt"></i></p>}
+    {/* <Link className="navbar-brand" to="/">
       Valcom Logo
-    </Link>
-    <div>
+    </Link> */}
+    {/* <div>
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link
@@ -47,7 +49,7 @@ const Navbar = props => (
           </Link>
         </li>
       </ul>
-    </div>
+    </div> */}
   </nav>
 );
 

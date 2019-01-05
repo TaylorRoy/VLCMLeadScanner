@@ -4,28 +4,37 @@ import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 
+
 const Login = () => (
-  <div>
-    <Hero backgroundImage="https://i.imgur.com/qkdpN.jpg">
-      <h1>Valcom Tech Event</h1>
-      <h2>Company Motto</h2>
-    </Hero>
-    <Container style={{ marginTop: 30 }}>
-      <Row>
-        <Col size="md-12">
-          <h1>Welcome To the event!  Please Login.</h1>
-        </Col>
-      </Row>
-      <Row>
-        <Col size="md-12">
-          <input className="username" placeholder = "username"></input>
-          <input className="password" placeholder = "password"></input>
-          <button className="loginButton" placeholder="login">Login</button>
-  
-        </Col>
-      </Row>
-    </Container>
-  </div>
+	<div>
+		<Hero backgroundImage="https://go.vlcmtech.com/hubfs/2.20.19%20UT%20IT%20Exchange/background.jpg">
+			<div>
+				<img className="banner" src="https://go.vlcmtech.com/hubfs/2.20.19%20UT%20IT%20Exchange/logo.png" alt="IT Exchange Logo" />
+			</div>
+
+
+			<Container style={{ marginTop: 30 }}>
+<form>
+				<Row>
+					<Col size="lg-12">
+						<input className="username" placeholder="username"></input>
+					</Col>
+				</Row>
+				<Row>
+					<Col size="lg-12">
+						<input className="password" placeholder="password"></input>
+					</Col>
+				</Row>
+				<Row>
+					<Col size="lg-12">
+						<button className="loginButton" placeholder="login">Login <i class="fas fa-angle-double-right"></i></button>
+
+					</Col>
+				</Row>
+				</form>
+			</Container>
+		</Hero>
+	</div>
 );
 
 export default Login;

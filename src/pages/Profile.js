@@ -1,9 +1,30 @@
 import React, { Component } from "react";
+// import API from "../utils/API";
+// import Card from "../components/Card";
+// import Alert from "../components/Alert";
+import ProfileBtn from "../components/ProfileBtn"
+import VendorLeadTable from "../components/VendorLeadTable"
 import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
+
+// class Profile extends Component {
+ 
+
+//   render() {
+//     return (
+//       <div style={{ ProfileBtn }} className="text-center scanner">
+        
+//         <button className="scanButton">SCAN <br /> BADGE</button>
+//         <button className="reportButton">MANUALLY <br /> ENTER LEAD</button>
+//         <p>List rendered below from db</p>
+//       </div>
+//     );
+// 	}
+	
+// }
 
 class Profile extends Component {
   // Setting our component's initial state
