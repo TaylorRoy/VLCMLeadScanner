@@ -8,7 +8,12 @@
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "fs": "^0.0.1-security",
+<<<<<<< HEAD
     "if-env": "^1.0.4",
+=======
+    "html2canvas": "^1.0.0-alpha.12",
+    "jspdf": "^1.5.3",
+>>>>>>> 5a4c780e2eeaea6a8cd96612233e60d1988ea0fe
     "mongodb": "^3.1.10",
     "mongoose": "^5.4.0"
   },

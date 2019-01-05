@@ -26,7 +26,7 @@ const Navbar = props => (
           <Link
             to="/profile"
             className={
-              window.location.pathname === "/discover"
+              window.location.pathname === "/profile"
                 ? "nav-link active"
                 : "nav-link"
             }
@@ -38,12 +38,24 @@ const Navbar = props => (
           <Link
             to="/admin"
             className={
-              window.location.pathname === "/search"
+              window.location.pathname === "/admin"
                 ? "nav-link active"
                 : "nav-link"
             }
           >
             Admin
+            </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            to="/sameday"
+            className={
+              window.location.pathname === "/sameday"
+                ? "nav-link active"
+                : "nav-link"
+            }
+          >
+            Same Day
           </Link>
         </li>
       </ul>
