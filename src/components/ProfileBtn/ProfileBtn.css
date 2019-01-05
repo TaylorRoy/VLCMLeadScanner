@@ -1,0 +1,48 @@
+.scanner {
+	margin-top: 40px;
+}
+
+.scanButton,
+.reportButton {
+	margin: 15px;
+	width: 300px;
+	height: 300px;
+	font-size: 30px;
+}
+
+.reportButton {
+	background: #B3B3B3;
+}
+
+@media screen and (max-width: 668px) {
+	.scanButton,
+	.reportButton {
+		margin: 15px;
+		width: 250px;
+		height: 250px;
+		font-size: 25px;
+		padding: 0px !important;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.scanButton,
+	.reportButton {
+		margin: 15px;
+		width: 200px;
+		height: 200px;
+		font-size: 20px;
+		padding: 0px !important;
+	}
+}
+
+@media screen and (max-width: 460px) {
+	.scanButton,
+	.reportButton {
+		margin: 10px;
+		width: 175px;
+		height: 200px;
+		font-size: 20px;
+		padding: 0px !important;
+	}
+}
