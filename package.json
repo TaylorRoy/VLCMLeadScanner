@@ -1,8 +1,7 @@
 {
   "name": "react-template",
   "version": "0.1.0",
-  "main": "index.js",
-  "proxy": "http://localhost:3001/",
+  "main": "server.js",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
