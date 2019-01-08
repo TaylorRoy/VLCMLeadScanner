@@ -10,6 +10,8 @@ import Jumbotron from "../components/Jumbotron";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
 
+import QrReader from "react-qr-reader";
+
 // class Profile extends Component {
  
 
@@ -29,16 +31,63 @@ import { ListItem } from "../components/List";
 class Profile extends Component {
   // Setting our component's initial state
   state = {
+		image: "",
+    match: false,
+		matchCount: 0,
     leads: [],
     firstname: "",
     lastname: "",
     company: "",
     position: "",
     email: "",
-    phone: ""
+		phone: "",
+		result: ""
   };
   count = 0;
 
+	// QR code stuff
+	constructor(props) {
+    super(props);
+    this.state = {
+      delay: 300,
+      result: "No result"
+    };
+    this.handleScan = this.handleScan.bind(this);
+  }
+  handleScan(data) {
+    if (data) {
+			
+			let whatIread = data;
+			console.log("The QR code says: " + whatIread) 
+			
+
+			var newObject = JSON.parse(whatIread);
+			console.log(newObject);
+			console.log("new Data is a: " + newObject);
+			console.log(newObject.firstname);
+			this.state.firstname = newObject.firstname;
+			this.state.lastname = newObject.lastname;
+			this.state.company = newObject.company;
+			this.state.position = newObject.position;
+			this.state.email = newObject.email;
+			this.state.phone = newObject.phone;
+			
+			this.handleFormSubmit();
+
+			return;
+			// we will add handleformsubmot
+			
+
+
+			
+    }
+  }
+  handleError(err) {
+    console.error(err);
+	}
+	// END OF QR CODE STUFF
+    
+  
   // Whens the component mounts, load all books and save them to this.state.books
   componentDidMount() {
     this.loadLeads();
@@ -123,7 +172,7 @@ class Profile extends Component {
   // Then reload books from the database
   handleFormSubmit = event => {
     alert("yo");
-    event.preventDefault();
+    
     API.saveBook({
       firstname: this.state.firstname,
       lastname: this.state.lastname,
@@ -134,7 +183,9 @@ class Profile extends Component {
     })
       .then(() => this.loadLeads())
       .catch(err => console.log(err));
-  };
+	};
+	
+	
 
   render() {
     return (
@@ -143,6 +194,15 @@ class Profile extends Component {
         <h3 className="text-center">
           Click scan to scan badges or Report to see booth visitor data.
         </h3>
+
+				<QrReader
+          delay={this.state.delay}
+          onError={this.handleError}
+          onScan={this.handleScan}
+          style={{ width: "320px" }}
+        />
+        <p>{this.state.result}</p>
+
         {/* <input onChange={this.handleInputChange} className="firstname" placeholder = "firstname" value={this.state.firstname}></input> */}
         <input
           value={this.state.firstname}
@@ -190,11 +250,12 @@ class Profile extends Component {
         <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
         <button className="scanButton">Scan</button>
         <button onClick={this.readFile} className="reportButton">Report</button>
+				
 
         <Jumbotron>
           <h1>List of Leads</h1>
         </Jumbotron>
-        {this.state.leads.length ? (
+        {this.state.leads ? (
           <List>
             {this.state.leads.map(lead => (
               <ListItem key={lead._id}>
