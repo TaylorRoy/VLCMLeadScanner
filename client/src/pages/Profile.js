@@ -2,8 +2,8 @@ import React, { Component } from "react";
 // import API from "../utils/API";
 // import Card from "../components/Card";
 // import Alert from "../components/Alert";
-import ProfileBtn from "../components/ProfileBtn"
-import VendorLeadTable from "../components/VendorLeadTable"
+// import ProfileBtn from "../components/ProfileBtn"
+// import VendorLeadTable from "../components/VendorLeadTable"
 import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
