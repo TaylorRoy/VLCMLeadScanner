@@ -8,4 +8,4 @@ QR code scanner app that stores user data to MongoDB
 
 3. npm install -g concurrently
 
-4. You will also need to: yarn add react-qr-reader
+4. You will also need to: yarn
