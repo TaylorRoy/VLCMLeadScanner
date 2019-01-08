@@ -107,7 +107,6 @@ class Sameday extends Component {
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
   handleFormSubmit = event => {
-    alert("yo");
     event.preventDefault();
     API.saveBook({
       firstname: this.state.firstname,
@@ -188,28 +187,12 @@ class Sameday extends Component {
         />
 
         <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
-        <button className="scanButton">Scan</button>
-        <button onClick={this.readFile} className="reportButton">Report</button>
+        {/* <button onClick={this.readFile} className="reportButton">Report</button> */}
 
         <Jumbotron>
-          <h1>List of Same Day Badges</h1>
+          <h1>Same Day Badge</h1>
         </Jumbotron>
-        {this.state.leads.length ? (
-          <List>
-            {this.state.leads.map(lead => (
-              <ListItem key={lead._id}>
-                <a href={"/scans/" + lead._id}>
-                  <strong>
-                    {lead.firstname} {lead.lastname}
-                  </strong>
-                </a>
-                <DeleteBtn />
-              </ListItem>
-            ))}
-          </List>
-        ) : (
-            <h3>No Results to Display</h3>
-          )}
+      
         <Badge
           firstname={this.state.firstname}
           lastname={this.state.lastname}
