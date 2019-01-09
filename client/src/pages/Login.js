@@ -20,14 +20,14 @@ class Login extends React.Component {
 		this.setState({[name]: value})
 	} 
 
-	verifyLogin = event => {
+	verifyLogin = (event) => {
 		event.preventDefault()
 
 		API.login({
 			username: this.state.username,
 			password:this.state.password
 		})
-		.then(res => console.log(res))
+		.then(res => console.log(res, "login verified"))
 		.catch(err => console.log(err.response))
 
 	}
@@ -67,7 +67,9 @@ class Login extends React.Component {
 							</Row>
 							<Row>
 								<Col size="lg-12">
-									<button className="loginButton" placeholder="login">Login <i class="fas fa-angle-double-right"></i></button>
+									<button 
+									onClick={this.verifyLogin}
+									className="loginButton" placeholder="login">Login <i class="fas fa-angle-double-right"></i></button>
 
 								</Col>
 							</Row>
