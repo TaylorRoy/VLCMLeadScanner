@@ -34,7 +34,7 @@ class Sameday extends Component {
   // Loads all books  and sets them to this.state.books
   loadLeads = (res) => {
     API.getBooks(res)
-      .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "" })
+      .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "", qrValue:""})
       )
       .catch(err => console.log(err));
     console.log("leads", this.state.leads);
@@ -104,8 +104,7 @@ class Sameday extends Component {
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
-			[name]: value,
-			qrValue: "firstname: " + this.state.firstname + "lastname: " + this.state.lastname
+      [name]: value
     });
   };
 
@@ -200,9 +199,9 @@ class Sameday extends Component {
         <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
         {/* <button onClick={this.readFile} className="reportButton">Report</button> */}
 
-        <Jumbotron>
+        {/* <Jumbotron>
           <h1>Same Day Badge</h1>
-        </Jumbotron>
+        </Jumbotron> */}
       
         <Badge
           firstname={this.state.firstname}
@@ -213,7 +212,16 @@ class Sameday extends Component {
 				<div style={{margin:"50px"}}>
 					<QRCode
 						style={{width:256}}
-						value={this.state.qrValue}
+						value={
+              JSON.stringify({
+                firstname: this.state.firstname,
+                lastname: this.state.lastname,
+                company: this.state.company,
+                position: this.state.position,
+                email: this.state.email,
+                phone: this.state.phone
+              })
+            }
 					/>
 				</div>
         <button onClick={this.getPDF} className="saveDataButton">Create PDF</button>

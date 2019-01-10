@@ -7,6 +7,7 @@ import Jumbotron from "../components/Jumbotron";
 import Badge from "../components/Badge";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
+import { QRCode } from 'react-qr-svg';
 
 class Sameday extends Component {
     // Setting our component's initial state
@@ -18,7 +19,7 @@ class Sameday extends Component {
         position: "",
         email: "",
         phone: "",
-        qrcode: ""
+        qrValue: ""
     };
     count = 0;
 
@@ -30,7 +31,14 @@ class Sameday extends Component {
     // Loads all books  and sets them to this.state.books
     loadLeads = (res) => {
         API.getBooks(res)
-            .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "" })
+            .then(res => this.setState({
+                leads: res.data, firstname: "",
+                lastname: "",
+                company: "",
+                position: "",
+                email: "",
+                phone: "",
+            })
             )
             .catch(err => console.log(err));
         console.log("leads", this.state.leads);
@@ -108,7 +116,7 @@ class Sameday extends Component {
     getPDF = () => {
         console.log("in getPDF");
 
-        html2canvas(document.querySelector("#badgeContainer")).then(canvas => {
+        html2canvas(document.querySelector(".list-group")).then(canvas => {
             console.log("canvas", canvas);
             document.body.appendChild(canvas);
             var image = canvas.toDataURL("image/png");
@@ -143,8 +151,20 @@ class Sameday extends Component {
                                     firstname={lead.firstname}
                                     lastname={lead.lastname}
                                     company={lead.company}
-                                    qrcode={lead.qrcode}
                                 />
+                                <div style={{ margin: "50px" }}>
+                                    <QRCode
+                                        style={{ width: 256 }}
+                                        value={JSON.stringify({
+                                            firstname: lead.firstname,
+                                            lastname: lead.lastname,
+                                            company: lead.company,
+                                            position: lead.position,
+                                            email: lead.email,
+                                            phone: lead.phone
+                                        })}
+                                    />
+                                </div>
                                 <DeleteBtn />
                             </ListItem>
 
