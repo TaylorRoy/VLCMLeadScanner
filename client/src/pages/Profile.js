@@ -31,22 +31,22 @@ import QrReader from "react-qr-reader";
 class Profile extends Component {
   // Setting our component's initial state
   state = {
-		image: "",
+    image: "",
     match: false,
-		matchCount: 0,
+    matchCount: 0,
     leads: [],
     firstname: "",
     lastname: "",
     company: "",
     position: "",
     email: "",
-		phone: "",
-		result: ""
+    phone: "",
+    result: ""
   };
   count = 0;
 
-	// QR code stuff
-	constructor(props) {
+  // QR code stuff
+  constructor(props) {
     super(props);
     this.state = {
       delay: 300,
@@ -57,6 +57,26 @@ class Profile extends Component {
   handleScan(data) {
     if (data) {
 
+<<<<<<< HEAD
+      let whatIread = data;
+      console.log("The QR code says: " + whatIread)
+
+      var newObject = JSON.parse(whatIread);
+      console.log(newObject);
+      console.log("new Data is a: " + newObject);
+      console.log(newObject.firstname);
+      this.state.firstname = newObject.firstname;
+      this.state.lastname = newObject.lastname;
+      this.state.company = newObject.company;
+      this.state.position = newObject.position;
+      this.state.email = newObject.email;
+      this.state.phone = newObject.phone;
+
+      this.handleFormSubmit();
+
+      return;
+      // we will add handleformsubmot	
+=======
 			let whatIread = data;
 			console.log("The QR code says: " + whatIread)
 
@@ -80,12 +100,18 @@ class Profile extends Component {
 
 
 
+>>>>>>> master
     }
   }
   handleError(err) {
     console.error(err);
+<<<<<<< HEAD
+  }
+  // END OF QR CODE STUFF
+=======
 	}
 	// END OF QR CODE STUFF
+>>>>>>> master
 
 
   // Whens the component mounts, load all books and save them to this.state.books
@@ -96,7 +122,16 @@ class Profile extends Component {
   // Loads all books  and sets them to this.state.books
   loadLeads = (res) => {
     API.getBooks(res)
-      .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "" })
+      .then(res => this.setState({
+        leads: res.data,
+        firstname: "",
+        lastname: "",
+        company: "",
+        position: "",
+        email: "",
+        phone: "",
+        qrValue: ""
+      })
       )
       .catch(err => console.log(err));
     console.log("leads", this.state.leads);
@@ -130,14 +165,19 @@ class Profile extends Component {
     var jsonArray = [["_id", "firstname", "lastname", "company", "position", "email", "phone", "date"]];
 
     //loop through jsonLeads and push into jsonArray
-    for (var i=0; i<jsonLeads.length; i++) {
-      jsonArray.push([jsonLeads[i]._id , jsonLeads[i].firstname, jsonLeads[i].lastname, jsonLeads[i].company, jsonLeads[i].position, jsonLeads[i].email, jsonLeads[i].phone, jsonLeads[i].date]);
+    for (var i = 0; i < jsonLeads.length; i++) {
+      jsonArray.push([jsonLeads[i]._id, jsonLeads[i].firstname, jsonLeads[i].lastname, jsonLeads[i].company, jsonLeads[i].position, jsonLeads[i].email, jsonLeads[i].phone, jsonLeads[i].date]);
     }
     console.log("jsonArray befor join", jsonArray);
 
     //loop through jsonArray and join data inside of array into string based on commas
+<<<<<<< HEAD
+    for (var i = 0; i < jsonArray.length; i++) {
+      csvRow.push(jsonArray[i].join(","))
+=======
     for (var j =0; j<jsonArray.length; j++) {
       csvRow.push(jsonArray[j].join(","))
+>>>>>>> master
     }
     console.log("csvRow after join", csvRow);
     //add %0A where there is a space to indicate where csv file should start a new line
@@ -164,7 +204,8 @@ class Profile extends Component {
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
+      qrValue: "firstname: " + this.state.firstname + "lastname: " + this.state.lastname + "company: " + this.state.company
     });
   };
 
@@ -183,7 +224,11 @@ class Profile extends Component {
     })
       .then(() => this.loadLeads())
       .catch(err => console.log(err));
+<<<<<<< HEAD
+  };
+=======
 	};
+>>>>>>> master
 
 
 
@@ -195,7 +240,7 @@ class Profile extends Component {
           Click scan to scan badges or Report to see booth visitor data.
         </h3>
 
-				<QrReader
+        <QrReader
           delay={this.state.delay}
           onError={this.handleError}
           onScan={this.handleScan}

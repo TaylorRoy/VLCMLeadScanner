@@ -34,7 +34,7 @@ class Sameday extends Component {
   // Loads all books  and sets them to this.state.books
   loadLeads = (res) => {
     API.getBooks(res)
-      .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "" })
+      .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "", qrValue:""})
       )
       .catch(err => console.log(err));
     console.log("leads", this.state.leads);
@@ -104,8 +104,7 @@ class Sameday extends Component {
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
-			[name]: value,
-			qrValue: "firstname: " + this.state.firstname + "lastname: " + this.state.lastname
+      [name]: value
     });
   };
 
@@ -200,10 +199,15 @@ class Sameday extends Component {
         <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
        {/* <button onClick={this.readFile} className="reportButton">Report</button> */}
 
-        <Jumbotron>
+        {/* <Jumbotron>
           <h1>Same Day Badge</h1>
+<<<<<<< HEAD
+        </Jumbotron> */}
+      
+=======
         </Jumbotron>
 
+>>>>>>> master
         <Badge
           firstname={this.state.firstname}
           lastname={this.state.lastname}
@@ -212,8 +216,22 @@ class Sameday extends Component {
         />
 				<div style={{margin:"50px"}}>
 					<QRCode
+<<<<<<< HEAD
+						style={{width:256}}
+						value={
+              JSON.stringify({
+                firstname: this.state.firstname,
+                lastname: this.state.lastname,
+                company: this.state.company,
+                position: this.state.position,
+                email: this.state.email,
+                phone: this.state.phone
+              })
+            }
+=======
             className="qr-code"
 						value={this.state.qrValue}
+>>>>>>> master
 					/>
 				</div>
         <button onClick={this.getPDF} className="saveDataButton">Create PDF</button>
