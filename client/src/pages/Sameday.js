@@ -8,17 +8,21 @@ import Badge from "../components/Badge";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
 
+import {QRCode} from 'react-qr-svg';
+
+
+
 class Sameday extends Component {
   // Setting our component's initial state
   state = {
-    leads: [],
+    
     firstname: "",
     lastname: "",
     company: "",
     position: "",
     email: "",
     phone: "",
-    qrcode: ""
+		qrValue: ""
   };
   count = 0;
 
@@ -100,7 +104,8 @@ class Sameday extends Component {
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+			[name]: value,
+			qrValue: "firstname: " + this.state.firstname + "lastname: " + this.state.lastname
     });
   };
 
@@ -144,6 +149,7 @@ class Sameday extends Component {
         </h3>
         {/* <input onChange={this.handleInputChange} className="firstname" placeholder = "firstname" value={this.state.firstname}></input> */}
         <input
+					// onChange={(e) => this.setState({qrValue: e.target.value})}
           value={this.state.firstname}
           name="firstname"
           onChange={this.handleInputChange}
@@ -151,13 +157,15 @@ class Sameday extends Component {
           placeholder="First Name"
         />
         <input
+					// onChange={(e) => this.setState({qrValue: e.target.value})}
           value={this.state.laststname}
           name="lastname"
           onChange={this.handleInputChange}
           type="text"
           placeholder="Last Name"
         />
-        <input
+				<input 
+					// onChange={(e) => this.setState({qrValue: e.target.value})}
           value={this.state.company}
           name="company"
           onChange={this.handleInputChange}
@@ -165,6 +173,7 @@ class Sameday extends Component {
           placeholder="Company Name"
         />
         <input
+					// onChange={(e) => this.setState({qrValue: e.target.value})}
           value={this.state.position}
           name="position"
           onChange={this.handleInputChange}
@@ -172,6 +181,7 @@ class Sameday extends Component {
           placeholder="Position"
         />
         <input
+					// onChange={(e) => this.setState({qrValue: e.target.value})}
           value={this.state.email}
           name="email"
           onChange={this.handleInputChange}
@@ -179,6 +189,7 @@ class Sameday extends Component {
           placeholder="Email"
         />
         <input
+					// onChange={(e) => this.setState({qrValue: e.target.value})}
           value={this.state.phone}
           name="phone"
           onChange={this.handleInputChange}
@@ -197,8 +208,14 @@ class Sameday extends Component {
           firstname={this.state.firstname}
           lastname={this.state.lastname}
           company={this.state.company}
-          qrcode={this.state.qrcode}
+          qrValue={this.state.qrValue}
         />
+				<div style={{margin:"50px"}}>
+					<QRCode
+						style={{width:256}}
+						value={this.state.qrValue}
+					/>
+				</div>
         <button onClick={this.getPDF} className="saveDataButton">Create PDF</button>
       </div>
     );
