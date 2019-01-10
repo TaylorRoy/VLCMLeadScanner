@@ -5,7 +5,17 @@ export default {
   getBooks: function(req) {
     console.log("in getBooks API", req);
     return axios.get("/api/books");
-  },
+	},
+	
+
+	login: function(req) {
+		console.log("logging in", req);
+		return axios.post("/api/vendor/login",req)
+		
+	},
+
+
+	
   // Gets the book with the given id
   // getBooks: function(id) {
   //   return axios.get("/api/books/" + id);
