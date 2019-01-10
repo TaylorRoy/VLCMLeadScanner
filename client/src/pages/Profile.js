@@ -9,7 +9,6 @@ import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
-import HotLead from "../components/HotLead"; 
 
 import QrReader from "react-qr-reader";
 
@@ -58,6 +57,7 @@ class Profile extends Component {
   handleScan(data) {
     if (data) {
 
+<<<<<<< HEAD
       let whatIread = data;
       console.log("The QR code says: " + whatIread)
 
@@ -76,12 +76,42 @@ class Profile extends Component {
 
       return;
       // we will add handleformsubmot	
+=======
+			let whatIread = data;
+			console.log("The QR code says: " + whatIread)
+
+
+			var newObject = JSON.parse(whatIread);
+			console.log(newObject);
+			console.log("new Data is a: " + newObject);
+			console.log(newObject.firstname);
+			this.setState.firstname = newObject.firstname;
+			this.setState.lastname = newObject.lastname;
+			this.setState.company = newObject.company;
+			this.setState.position = newObject.position;
+			this.setState.email = newObject.email;
+			this.setState.phone = newObject.phone;
+
+			this.handleFormSubmit();
+
+			return;
+			// we will add handleformsubmot
+
+
+
+
+>>>>>>> master
     }
   }
   handleError(err) {
     console.error(err);
+<<<<<<< HEAD
   }
   // END OF QR CODE STUFF
+=======
+	}
+	// END OF QR CODE STUFF
+>>>>>>> master
 
 
   // Whens the component mounts, load all books and save them to this.state.books
@@ -141,8 +171,13 @@ class Profile extends Component {
     console.log("jsonArray befor join", jsonArray);
 
     //loop through jsonArray and join data inside of array into string based on commas
+<<<<<<< HEAD
     for (var i = 0; i < jsonArray.length; i++) {
       csvRow.push(jsonArray[i].join(","))
+=======
+    for (var j =0; j<jsonArray.length; j++) {
+      csvRow.push(jsonArray[j].join(","))
+>>>>>>> master
     }
     console.log("csvRow after join", csvRow);
     //add %0A where there is a space to indicate where csv file should start a new line
@@ -153,7 +188,7 @@ class Profile extends Component {
     var a = document.createElement("a");
     a.href = 'data:attachment/csv,' + csvString;
     a.target = "_Blank";
-    a.download = "leadReport.csv";
+    a.download = "vlcmReport.csv";
     document.body.appendChild(a);
     a.click();
   };
@@ -189,7 +224,11 @@ class Profile extends Component {
     })
       .then(() => this.loadLeads())
       .catch(err => console.log(err));
+<<<<<<< HEAD
   };
+=======
+	};
+>>>>>>> master
 
 
 
@@ -205,7 +244,7 @@ class Profile extends Component {
           delay={this.state.delay}
           onError={this.handleError}
           onScan={this.handleScan}
-					className="qrReader"
+          style={{ width: "320px" }}
         />
         <p>{this.state.result}</p>
 
@@ -253,31 +292,23 @@ class Profile extends Component {
           placeholder="Phone Number"
         />
 
-<button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
-        <br></br>
-        <div className="row justify-content-center text-center">
-        <div className="addLeadBtns col-md-11 ">
-        <button className="scanButton col-md-3">SCAN LEAD</button>
-        <button className="manualEnterBtn col-md-3">ENTER LEAD</button>
-</div>
-        </div>
-       
-				   <div className="col-md-6 scannedList">
-				<button onClick={this.readFile} className="btn btn-link reportButton text-right">Export as a .csv</button>
+        <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
+        <button className="scanButton">Scan</button>
+        <button onClick={this.readFile} className="reportButton">Report</button>
+
+
+        <Jumbotron>
+          <h1>List of Leads</h1>
+        </Jumbotron>
         {this.state.leads ? (
           <List>
             {this.state.leads.map(lead => (
               <ListItem key={lead._id}>
-                {/* <a href={"/scans/" + lead._id}> */}
+                <a href={"/scans/" + lead._id}>
                   <strong>
-										{lead.firstname} {lead.lastname}
+                    {lead.firstname} {lead.lastname}
                   </strong>
-								{/* </a> */}
-								<br></br>
-								{lead.position} at {lead.company}
-								<br>
-								</br>
-								<HotLead />
+                </a>
                 <DeleteBtn />
               </ListItem>
             ))}
@@ -286,7 +317,6 @@ class Profile extends Component {
             <h3>No Results to Display</h3>
           )}
       </div>
-			</div>
     );
   }
 }
