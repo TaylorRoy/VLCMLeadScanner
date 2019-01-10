@@ -1,9 +1,9 @@
 .badgeContainer {
     width: 50%;
-    
+    margin: 10%;
+
 }
 
 .badgeHeader {
-    background-color: red;
+    background-color: green;
 }
-
