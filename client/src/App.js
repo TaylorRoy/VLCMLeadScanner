@@ -5,13 +5,13 @@ import Login from "./pages/Login";
 import Badge from "./pages/Badge";
 import Admin from "./pages/Admin";
 import Sameday from "./pages/Sameday";
-import Navbar from "./components/Navbar";
+
 
 
 const App = () => (
   <Router>
     <div>
-      <Navbar />
+     
    
         <Route exact path="/" component={Login} />
         <Route exact path="/login" component={Login} />
