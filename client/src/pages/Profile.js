@@ -53,30 +53,11 @@ class Profile extends Component {
       result: "No result"
     };
     this.handleScan = this.handleScan.bind(this);
-  }
+	}
+	
   handleScan(data) {
     if (data) {
 
-<<<<<<< HEAD
-      let whatIread = data;
-      console.log("The QR code says: " + whatIread)
-
-      var newObject = JSON.parse(whatIread);
-      console.log(newObject);
-      console.log("new Data is a: " + newObject);
-      console.log(newObject.firstname);
-      this.state.firstname = newObject.firstname;
-      this.state.lastname = newObject.lastname;
-      this.state.company = newObject.company;
-      this.state.position = newObject.position;
-      this.state.email = newObject.email;
-      this.state.phone = newObject.phone;
-
-      this.handleFormSubmit();
-
-      return;
-      // we will add handleformsubmot	
-=======
 			let whatIread = data;
 			console.log("The QR code says: " + whatIread)
 
@@ -85,33 +66,24 @@ class Profile extends Component {
 			console.log(newObject);
 			console.log("new Data is a: " + newObject);
 			console.log(newObject.firstname);
-			this.setState.firstname = newObject.firstname;
-			this.setState.lastname = newObject.lastname;
-			this.setState.company = newObject.company;
-			this.setState.position = newObject.position;
-			this.setState.email = newObject.email;
-			this.setState.phone = newObject.phone;
+			this.state.firstname = newObject.firstname;
+			this.state.lastname = newObject.lastname;
+			this.state.company = newObject.company;
+			this.state.position = newObject.position;
+			this.state.email = newObject.email;
+			this.state.phone = newObject.phone;
 
 			this.handleFormSubmit();
 
 			return;
-			// we will add handleformsubmot
-
-
-
-
->>>>>>> master
-    }
+			
+		}
+		
   }
   handleError(err) {
     console.error(err);
-<<<<<<< HEAD
-  }
-  // END OF QR CODE STUFF
-=======
 	}
 	// END OF QR CODE STUFF
->>>>>>> master
 
 
   // Whens the component mounts, load all books and save them to this.state.books
@@ -137,15 +109,7 @@ class Profile extends Component {
     console.log("leads", this.state.leads);
   };
 
-  //Writes a report.txt file of all leads from database
-  // createReport = (res) => {
-  //   alert("createReport");
-  //   API.getBooks(res)
-  //     .then(res => this.setState({ leads: res.data }))
-  //     .catch(err => console.log(err));
-  //   console.log("leads from createreport", this.state.leads);
-
-  // }
+ 
 
   readFile = (res) => {
     API.getBooks(res)
@@ -171,13 +135,8 @@ class Profile extends Component {
     console.log("jsonArray befor join", jsonArray);
 
     //loop through jsonArray and join data inside of array into string based on commas
-<<<<<<< HEAD
-    for (var i = 0; i < jsonArray.length; i++) {
-      csvRow.push(jsonArray[i].join(","))
-=======
     for (var j =0; j<jsonArray.length; j++) {
       csvRow.push(jsonArray[j].join(","))
->>>>>>> master
     }
     console.log("csvRow after join", csvRow);
     //add %0A where there is a space to indicate where csv file should start a new line
@@ -205,7 +164,7 @@ class Profile extends Component {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
-      qrValue: "firstname: " + this.state.firstname + "lastname: " + this.state.lastname + "company: " + this.state.company
+      // qrValue: "firstname: " + this.state.firstname + "lastname: " + this.state.lastname + "company: " + this.state.company
     });
   };
 
@@ -224,11 +183,7 @@ class Profile extends Component {
     })
       .then(() => this.loadLeads())
       .catch(err => console.log(err));
-<<<<<<< HEAD
-  };
-=======
 	};
->>>>>>> master
 
 
 
