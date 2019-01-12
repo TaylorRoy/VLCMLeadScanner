@@ -1,0 +1,12 @@
+.off {
+color: gray;
+}
+
+.on {
+	color: orange;
+}
+
+.fa-fire {
+	font-size: 20px;
+	float: left;
+}

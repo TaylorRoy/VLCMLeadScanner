@@ -4,6 +4,7 @@
   "main": "server.js",
   "private": true,
   "dependencies": {
+    "all": "^0.0.0",
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "fs": "^0.0.1-security",
@@ -12,7 +13,9 @@
     "jspdf": "^1.5.3",
     "mongodb": "^3.1.10",
     "mongoose": "^5.4.0",
-    "react-qr-svg": "^2.1.0"
+    "react-qr-reader": "^2.1.2",
+    "react-qr-svg": "^2.1.0",
+    "react-router-dom": "^4.3.1"
   },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -31,7 +34,17 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "repository": "git@github.com:TaylorRoy/VLCMLeadScanner.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/TaylorRoy/VLCMLeadScanner.git"
+  },
   "author": "jessicadoucette <jessicadoucette15@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "description": "QR code scanner app that stores user data to MongoDB",
+  "bugs": {
+    "url": "https://github.com/TaylorRoy/VLCMLeadScanner/issues"
+  },
+  "homepage": "https://github.com/TaylorRoy/VLCMLeadScanner#readme",
+  "devDependencies": {},
+  "keywords": []
 }

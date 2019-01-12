@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component} from "react";
 import API from "../utils/API";
 import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
@@ -15,7 +15,7 @@ class Admin extends Component {
 
   // When the component mounts, get a list of all available base breeds and update this.state.breeds
   componentDidMount() {
-    API.getBaseBreedsList()
+    API.getBooks()
       .then(res => this.setState({ breeds: res.data.message }))
       .catch(err => console.log(err));
   }
@@ -35,6 +35,7 @@ class Admin extends Component {
       })
       .catch(err => this.setState({ error: err.message }));
   };
+
   render() {
     return (
       <div>
@@ -53,9 +54,16 @@ class Admin extends Component {
           />
           <SearchResults results={this.state.results} />
         </Container>
+
       </div>
     );
   }
 }
 
 export default Admin;
+
+// <View className="inputsContainer">
+//      <TouchableHighlight className="fullWidthButton">
+//         <div className="fullWidthButtonText">Submit</div>
+//      </TouchableHighlight>
+// </View>
