@@ -3,16 +3,10 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import API from "../utils/API";
 //import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
 import Badge from "../components/Badge";
-<<<<<<< HEAD
-//import { List } from "../components/List";
-//import { ListItem } from "../components/List";
-=======
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
 import Navbar from "../components/Navbar"; 
->>>>>>> profile-style
 
 import {QRCode} from 'react-qr-svg';
 
