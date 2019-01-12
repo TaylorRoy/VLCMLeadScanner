@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
-const Navbar = props => (
-  <nav className="navbar navbar-expand-lg bg-dark justify-content-fit-center">
-	{<h1>HP Lead Scanner</h1>}
+const Navbar = ({children}) => (
+  <nav className="navbar navbar-expand-lg bg-dark justify-content-center">
+{children}
 	{<p className="logout"><i class="fas fa-sign-out-alt"></i></p>}
     <Link className="navbar-brand" to="/">
       Valcom Logo

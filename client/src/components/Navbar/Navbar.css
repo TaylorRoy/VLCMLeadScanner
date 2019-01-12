@@ -7,6 +7,7 @@
 
 h1 {
 	color: #E0CD1A;
+	text-transform: uppercase;
 }
 
 .logout {
@@ -14,7 +15,4 @@ h1 {
 	position: fixed;
 	right: 30px;
 	font-size: 30px;
-}
-.navbar-nav .nav-item .navbar-brand .nav-link {
-	align-items: flex-end;
 }

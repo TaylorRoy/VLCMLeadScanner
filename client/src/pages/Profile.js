@@ -6,9 +6,10 @@ import React, { Component } from "react";
 // import VendorLeadTable from "../components/VendorLeadTable"
 import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
+import HotLead from "../components/HotLead"; 
+import Navbar from "../components/Navbar";
 
 import QrReader from "react-qr-reader";
 
@@ -190,10 +191,10 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <h1 className="text-center">Welcome Company</h1>
-        <h3 className="text-center">
-          Click scan to scan badges or Report to see booth visitor data.
-        </h3>
+				<Navbar>	
+					<h1>{this.vendor} Lead Scanner</h1>
+				</Navbar> 
+      
 
         <QrReader
           delay={this.state.delay}
@@ -247,14 +248,18 @@ class Profile extends Component {
           placeholder="Phone Number"
         />
 
-        <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
-        <button className="scanButton">Scan</button>
-        <button onClick={this.readFile} className="reportButton">Report</button>
-
-
-        <Jumbotron>
-          <h1>List of Leads</h1>
-        </Jumbotron>
+<button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
+        <br></br>
+{/* buttons */}
+        <div className="row justify-content-center text-center">
+        <div className="addLeadBtns col-md-11 ">
+        <button className="scanButton col-md-3">SCAN LEAD</button>
+        <button className="manualEnterBtn col-md-3">ENTER LEAD</button>
+</div>
+        </div>
+       
+				   <div className="col-md-6 scannedList">
+				<button onClick={this.readFile} className="btn btn-link reportButton text-right">Export as a .csv</button>
         {this.state.leads ? (
           <List>
             {this.state.leads.map(lead => (
