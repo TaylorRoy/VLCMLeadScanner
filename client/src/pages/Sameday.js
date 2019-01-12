@@ -197,17 +197,8 @@ class Sameday extends Component {
         />
 
         <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
-       {/* <button onClick={this.readFile} className="reportButton">Report</button> */}
+       <button onClick={this.readFile} className="reportButton">Report</button>
 
-        {/* <Jumbotron>
-          <h1>Same Day Badge</h1>
-<<<<<<< HEAD
-        </Jumbotron> */}
-      
-=======
-        </Jumbotron>
-
->>>>>>> master
         <Badge
           firstname={this.state.firstname}
           lastname={this.state.lastname}
@@ -216,7 +207,6 @@ class Sameday extends Component {
         />
 				<div style={{margin:"50px"}}>
 					<QRCode
-<<<<<<< HEAD
 						style={{width:256}}
 						value={
               JSON.stringify({
@@ -228,10 +218,6 @@ class Sameday extends Component {
                 phone: this.state.phone
               })
             }
-=======
-            className="qr-code"
-						value={this.state.qrValue}
->>>>>>> master
 					/>
 				</div>
         <button onClick={this.getPDF} className="saveDataButton">Create PDF</button>
