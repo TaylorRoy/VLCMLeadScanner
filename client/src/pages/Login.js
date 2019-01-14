@@ -5,6 +5,7 @@ import Row from "../components/Row";
 import Col from "../components/Col";
 
 import API from "../utils/API"
+import Consumer from './../GlobalState'
 
 
 class Login extends React.Component {
@@ -27,9 +28,13 @@ class Login extends React.Component {
 			username: this.state.username,
 			password:this.state.password
 		})
-		.then(res => console.log(res, "login verified"))
-		.catch(err => console.log(err.response))
-
+		.then((res) => {
+			this.props.global.setAuthRes(res.data)
+			console.log(res, "login verified")
+		})
+		.catch((err) => {
+			console.log(err)
+		})
 	}
 
 
@@ -80,4 +85,10 @@ class Login extends React.Component {
 		)
 	};
 }
-export default Login;
+export default props => (
+	<Consumer>
+		{(global) => {
+			return <Login {...props} global={global}/>
+		}}
+	</Consumer>
+)

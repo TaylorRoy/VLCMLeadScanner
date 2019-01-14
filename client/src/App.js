@@ -6,23 +6,34 @@ import Badge from "./pages/Badge";
 import Admin from "./pages/Admin";
 import Sameday from "./pages/Sameday";
 import Navbar from "./components/Navbar";
+import Consumer, { GlobalState } from "./GlobalState";
 
 
 const App = () => (
-  <Router>
-    <div>
-      <Navbar />
-   
-        <Route exact path="/" component={Login} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/admin" component={Admin} />
-        <Route exact path="/badge" component={Badge} />
-        <Route exact path="/sameday" component={Sameday} />
- 
-    
-    </div>
-  </Router>
+	<GlobalState>
+		<Consumer>
+			{(global) => (
+				<React.Fragment>
+					<p>{global.state.test}</p>
+
+					<Router>
+						<div>
+							<Navbar />
+
+							<Route exact path="/" component={Login} />
+							<Route exact path="/login" component={Login} />
+							{global.state.authenticated && <Route exact path="/profile" component={Profile} />}
+							<Route exact path="/admin" component={Admin} />
+							<Route exact path="/badge" component={Badge} />
+							<Route exact path="/sameday" component={Sameday} />
+
+
+						</div>
+					</Router>
+				</React.Fragment>
+			)}
+		</Consumer>
+	</GlobalState>
 );
 
 export default App;
