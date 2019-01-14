@@ -6,61 +6,62 @@ import React, { Component } from "react";
 // import VendorLeadTable from "../components/VendorLeadTable"
 import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
 import HotLead from "../components/HotLead"; 
+import Navbar from "../components/Navbar";
 
 import QrReader from "react-qr-reader";
 
 // class Profile extends Component {
- 
+
 
 //   render() {
 //     return (
 //       <div style={{ ProfileBtn }} className="text-center scanner">
-        
+
 //         <button className="scanButton">SCAN <br /> BADGE</button>
 //         <button className="reportButton">MANUALLY <br /> ENTER LEAD</button>
 //         <p>List rendered below from db</p>
 //       </div>
 //     );
 // 	}
-	
+
 // }
 
 class Profile extends Component {
   // Setting our component's initial state
   state = {
-		image: "",
+    image: "",
     match: false,
-		matchCount: 0,
+    matchCount: 0,
     leads: [],
     firstname: "",
     lastname: "",
     company: "",
     position: "",
     email: "",
-		phone: "",
-		result: ""
+    phone: "",
+    result: ""
   };
   count = 0;
 
-	// QR code stuff
-	constructor(props) {
+  // QR code stuff
+  constructor(props) {
     super(props);
     this.state = {
       delay: 300,
       result: "No result"
     };
     this.handleScan = this.handleScan.bind(this);
-  }
+	}
+	
   handleScan(data) {
     if (data) {
-			
+
 			let whatIread = data;
-			console.log("The QR code says: " + whatIread) 
-			
+			console.log("The QR code says: " + whatIread)
+
 
 			var newObject = JSON.parse(whatIread);
 			console.log(newObject);
@@ -72,23 +73,20 @@ class Profile extends Component {
 			this.state.position = newObject.position;
 			this.state.email = newObject.email;
 			this.state.phone = newObject.phone;
-			
+
 			this.handleFormSubmit();
 
 			return;
-			// we will add handleformsubmot
 			
-
-
-			
-    }
+		}
+		
   }
   handleError(err) {
     console.error(err);
 	}
 	// END OF QR CODE STUFF
-    
-  
+
+
   // Whens the component mounts, load all books and save them to this.state.books
   componentDidMount() {
     this.loadLeads();
@@ -97,21 +95,22 @@ class Profile extends Component {
   // Loads all books  and sets them to this.state.books
   loadLeads = (res) => {
     API.getBooks(res)
-      .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "" })
+      .then(res => this.setState({
+        leads: res.data,
+        firstname: "",
+        lastname: "",
+        company: "",
+        position: "",
+        email: "",
+        phone: "",
+        qrValue: ""
+      })
       )
       .catch(err => console.log(err));
     console.log("leads", this.state.leads);
   };
 
-  //Writes a report.txt file of all leads from database
-  // createReport = (res) => {
-  //   alert("createReport");
-  //   API.getBooks(res)
-  //     .then(res => this.setState({ leads: res.data }))
-  //     .catch(err => console.log(err));
-  //   console.log("leads from createreport", this.state.leads);
-  
-  // }
+ 
 
   readFile = (res) => {
     API.getBooks(res)
@@ -131,14 +130,14 @@ class Profile extends Component {
     var jsonArray = [["_id", "firstname", "lastname", "company", "position", "email", "phone", "date"]];
 
     //loop through jsonLeads and push into jsonArray
-    for (var i=0; i<jsonLeads.length; i++) {
-      jsonArray.push([jsonLeads[i]._id , jsonLeads[i].firstname, jsonLeads[i].lastname, jsonLeads[i].company, jsonLeads[i].position, jsonLeads[i].email, jsonLeads[i].phone, jsonLeads[i].date]);
+    for (var i = 0; i < jsonLeads.length; i++) {
+      jsonArray.push([jsonLeads[i]._id, jsonLeads[i].firstname, jsonLeads[i].lastname, jsonLeads[i].company, jsonLeads[i].position, jsonLeads[i].email, jsonLeads[i].phone, jsonLeads[i].date]);
     }
     console.log("jsonArray befor join", jsonArray);
 
     //loop through jsonArray and join data inside of array into string based on commas
-    for (var i =0; i<jsonArray.length; i++) {
-      csvRow.push(jsonArray[i].join(","))
+    for (var j =0; j<jsonArray.length; j++) {
+      csvRow.push(jsonArray[j].join(","))
     }
     console.log("csvRow after join", csvRow);
     //add %0A where there is a space to indicate where csv file should start a new line
@@ -149,7 +148,7 @@ class Profile extends Component {
     var a = document.createElement("a");
     a.href = 'data:attachment/csv,' + csvString;
     a.target = "_Blank";
-    a.download = "leadReport.csv";
+    a.download = "vlcmReport.csv";
     document.body.appendChild(a);
     a.click();
   };
@@ -165,7 +164,8 @@ class Profile extends Component {
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
+      // qrValue: "firstname: " + this.state.firstname + "lastname: " + this.state.lastname + "company: " + this.state.company
     });
   };
 
@@ -173,7 +173,7 @@ class Profile extends Component {
   // Then reload books from the database
   handleFormSubmit = event => {
     alert("yo");
-    
+
     API.saveBook({
       firstname: this.state.firstname,
       lastname: this.state.lastname,
@@ -185,22 +185,22 @@ class Profile extends Component {
       .then(() => this.loadLeads())
       .catch(err => console.log(err));
 	};
-	
-	
+
+
 
   render() {
     return (
       <div>
-        <h1 className="text-center">Welcome Company</h1>
-        <h3 className="text-center">
-          Click scan to scan badges or Report to see booth visitor data.
-        </h3>
+				<Navbar>	
+					<h1>{this.vendor} Lead Scanner</h1>
+				</Navbar> 
+      
 
-				<QrReader
+        <QrReader
           delay={this.state.delay}
           onError={this.handleError}
           onScan={this.handleScan}
-					className="qrReader"
+          style={{ width: "320px" }}
         />
         <p>{this.state.result}</p>
 
@@ -250,6 +250,7 @@ class Profile extends Component {
 
 <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
         <br></br>
+{/* buttons */}
         <div className="row justify-content-center text-center">
         <div className="addLeadBtns col-md-11 ">
         <button className="scanButton col-md-3">SCAN LEAD</button>
@@ -263,16 +264,11 @@ class Profile extends Component {
           <List>
             {this.state.leads.map(lead => (
               <ListItem key={lead._id}>
-                {/* <a href={"/scans/" + lead._id}> */}
+                <a href={"/scans/" + lead._id}>
                   <strong>
-										{lead.firstname} {lead.lastname}
+                    {lead.firstname} {lead.lastname}
                   </strong>
-								{/* </a> */}
-								<br></br>
-								{lead.position} at {lead.company}
-								<br>
-								</br>
-								<HotLead />
+                </a>
                 <DeleteBtn />
               </ListItem>
             ))}

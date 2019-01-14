@@ -3,8 +3,7 @@
   border: 1px #DDDDDD solid;
   border-radius: 4px;
   overflow-y: scroll;
-	overflow-x: hidden;
-	margin-bottom: 60px;
+  overflow-x: hidden;
 }
 
 .list-overflow-container ul {
@@ -17,9 +16,9 @@
   border-right: none;
 }
 
-/* .list-overflow-container li * {
+.list-overflow-container li * {
   cursor: pointer;
-} */
+}
 
 .list-overflow-container li a {
   color: #2A878C;
@@ -31,8 +30,4 @@
 
 .list-overflow-container li:last-child {
   border-bottom: none;
-}
-
-.scannedList {
-	margin: 0 auto;
 }
