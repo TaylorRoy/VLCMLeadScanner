@@ -191,9 +191,7 @@ class Profile extends Component {
   render() {
     return (
       <div>
-				<Navbar>	
-					<h1>{this.vendor} Lead Scanner</h1>
-				</Navbar> 
+				
       
 
         <QrReader
