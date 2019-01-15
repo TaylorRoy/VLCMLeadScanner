@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route, withRouter,Switch } from "react-router-dom";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Badge from "./pages/Badge";
@@ -9,14 +9,14 @@ import Navbar from "./components/Navbar";
 import Consumer, { GlobalState } from "./GlobalState";
 
 
-const App = () => (
-	<GlobalState>
+const App = (props) => (
+	<GlobalState history={props.history}>
 		<Consumer>
 			{(global) => (
 				<React.Fragment>
-					<p>{global.state.test}</p>
+					
 
-					<Router>
+					<Switch>
 						<div>
 							<Navbar />
 
@@ -29,11 +29,11 @@ const App = () => (
 
 
 						</div>
-					</Router>
+					</Switch>
 				</React.Fragment>
 			)}
 		</Consumer>
 	</GlobalState>
 );
 
-export default App;
+export default withRouter(App);

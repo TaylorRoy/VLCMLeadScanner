@@ -7,7 +7,7 @@ class GlobalState extends Component {
 		this.state = {
 			test: "I am the test",
 			vendor:"Clayton Co",
-			authenticated: true,
+			authenticated: false,
 			authRes: null
 		}
 	}
@@ -22,8 +22,9 @@ class GlobalState extends Component {
 		this.setState({
 			authRes: authStatus,
 			vendor: authStatus.user.username,
-			authenticated: true
+			authenticated: true,
 		})
+		this.props.history.push('/profile')
 	}
 
 	render() {
