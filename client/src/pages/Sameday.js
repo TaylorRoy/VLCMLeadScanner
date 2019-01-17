@@ -3,7 +3,6 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import API from "../utils/API";
 //import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
 import Badge from "../components/Badge";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
@@ -34,9 +33,12 @@ class Sameday extends Component {
 
   // Loads all books  and sets them to this.state.books
   loadLeads = (res) => {
+		console.log("RES: ", res);
     API.getBooks(res)
-      .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "", qrValue:""})
-      )
+      .then(res => {
+				console.log('HELLO', res);
+				this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "", qrValue:""})
+			})
       .catch(err => console.log(err));
     console.log("leads", this.state.leads);
   };
