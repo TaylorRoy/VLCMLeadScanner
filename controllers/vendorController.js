@@ -12,10 +12,12 @@ login: function(req,res){
 			return res.sendStatus(500)
 		}
 		if (data){
+			 req.session.user = data
+			 req.session.auth = true
 
-			
+			console.log(req.session)
 
-			res.json(data)
+			res.json(req.session)
 
 		}
 	})
