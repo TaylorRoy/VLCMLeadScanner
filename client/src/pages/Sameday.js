@@ -33,9 +33,12 @@ class Sameday extends Component {
 
   // Loads all books  and sets them to this.state.books
   loadLeads = (res) => {
+		console.log("RES: ", res);
     API.getBooks(res)
-      .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "", qrValue:""})
-      )
+      .then(res => {
+				console.log('HELLO', res);
+				this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "", qrValue:""})
+			})
       .catch(err => console.log(err));
     console.log("leads", this.state.leads);
   };

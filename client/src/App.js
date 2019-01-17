@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Badge from "./pages/Badge";
 import Admin from "./pages/Admin";
 import Sameday from "./pages/Sameday";
+import UploadLeadList from "./pages/UploadLeadList";
 
 
 
@@ -19,6 +20,7 @@ const App = () => (
         <Route exact path="/admin" component={Admin} />
         <Route exact path="/badge" component={Badge} />
         <Route exact path="/sameday" component={Sameday} />
+				<Route exact path="/UploadLeadList" component={UploadLeadList} />
  
     
     </div>
