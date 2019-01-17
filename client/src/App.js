@@ -17,7 +17,7 @@ const App = (props) => (
 				<React.Fragment>
 					
 
-const App = () => (
+
   
 					<Switch>
 						<div>
