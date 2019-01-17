@@ -6,6 +6,7 @@
   "dependencies": {
     "all": "^0.0.0",
     "axios": "^0.18.0",
+    "canvg": "^1.5.3",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "fs": "^0.0.1-security",

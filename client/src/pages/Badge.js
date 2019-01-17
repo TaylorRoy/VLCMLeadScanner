@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import canvg from 'canvg';
 import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
@@ -32,7 +33,8 @@ class Sameday extends Component {
     loadLeads = (res) => {
         API.getBooks(res)
             .then(res => this.setState({
-                leads: res.data, firstname: "",
+                leads: res.data,
+                firstname: "",
                 lastname: "",
                 company: "",
                 position: "",
@@ -44,66 +46,6 @@ class Sameday extends Component {
         console.log("leads", this.state.leads);
     };
 
-    //Writes a report.txt file of all leads from database
-    // createReport = (res) => {
-    //   alert("createReport");
-    //   API.getBooks(res)
-    //     .then(res => this.setState({ leads: res.data }))
-    //     .catch(err => console.log(err));
-    //   console.log("leads from createreport", this.state.leads);
-
-    // }
-
-    //   readFile = (res) => {
-    //     API.getBooks(res)
-    //       .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "" })
-    //       )
-    //       .catch(err => console.log(err));
-    //     console.log("leads", this.state.leads);
-
-    //     //create empty array to push json into later
-    //     var csvRow = [];
-
-    //     //save this.state.leads into another variable
-    //     var jsonLeads = this.state.leads;
-    //     console.log("jsonLeads", jsonLeads);
-
-    //     //create an array with an array of header strings which we will push json into
-    //     var jsonArray = [["_id", "firstname", "lastname", "company", "position", "email", "phone", "date"]];
-
-    //     //loop through jsonLeads and push into jsonArray
-    //     for (var i=0; i<jsonLeads.length; i++) {
-    //       jsonArray.push([jsonLeads[i]._id , jsonLeads[i].firstname, jsonLeads[i].lastname, jsonLeads[i].company, jsonLeads[i].position, jsonLeads[i].email, jsonLeads[i].phone, jsonLeads[i].date]);
-    //     }
-    //     console.log("jsonArray befor join", jsonArray);
-
-    //     //loop through jsonArray and join data inside of array into string based on commas
-    //     for (var i =0; i<jsonArray.length; i++) {
-    //       csvRow.push(jsonArray[i].join(","))
-    //     }
-    //     console.log("csvRow after join", csvRow);
-    //     //add %0A where there is a space to indicate where csv file should start a new line
-    //     var csvString = csvRow.join("%0A");
-    //     console.log("csvString", csvString);
-
-    //     //output csv file
-    //     var a = document.createElement("a");
-    //     a.href = 'data:attachment/csv,' + csvString;
-    //     a.target = "_Blank";
-    //     a.download = "vlcmReport.csv";
-    //     document.body.appendChild(a);
-    //     a.click();
-    //   };
-
-
-
-    // Deletes a book from the database with a given id, then reloads books from the db
-    //   deleteBook = id => {
-    //     API.deleteBook(id)
-    //       .then(res => this.loadBooks())
-    //       .catch(err => console.log(err));
-    //   };
-
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -114,16 +56,39 @@ class Sameday extends Component {
 
     //create PDF of just QR badge section of the Sameday page
     getPDF = () => {
+        alert("PDF Clicked");
         console.log("in getPDF");
-
-        html2canvas(document.querySelector(".list-group")).then(canvas => {
-            console.log("canvas", canvas);
-            document.body.appendChild(canvas);
-            var image = canvas.toDataURL("image/png");
-            var doc = new jsPDF();
-            doc.addImage(image, "JPEG", 20, 20);
-            doc.save("test.pdf");
-        });
+        var doc = new jsPDF();
+        var timesToRun = 3
+        for (var i = 0; i < timesToRun; i++) {
+            makePdfPage(i)
+            function makePdfPage(i){
+                html2canvas(document.querySelectorAll(".list-group-item")[i]).then(canvas => {
+                    // console.log("canvas", document.querySelectorAll(".list-group-item")[i]);
+                    // document.body.appendChild(canvas);
+                    var image = canvas.toDataURL("image/png");
+                    doc.addImage(image, "JPEG", 20, 20);
+                    var svg = document.querySelectorAll(".list-group-item")[i].children[1].children[0].outerHTML;
+                    console.log(canvas)
+                    // svg = svg.replace(/\r?\n|\r/g, '').trim();
+                    var canvas2 = document.createElement('canvas');
+                    canvg(canvas2, svg);
+                    var imgData = canvas2.toDataURL('image/png');
+                    doc.addImage(imgData, 'PNG', 100, 150, 100, 100);
+                    doc.addPage();
+                    if(i >= timesToRun-1){
+                        doc.save("testttttt.pdf");
+                    }
+                    // var testImg = document.createElement('img')
+                    // var elem = document.createElement("img");
+                    // elem.setAttribute("src", imgData);
+                    // elem.setAttribute("height", "768");
+                    // elem.setAttribute("width", "1024");
+                    // elem.setAttribute("alt", "Flower");
+                    // document.querySelector(".list-group").appendChild(elem)
+                });
+            }
+        }
     }
 
     render() {
@@ -152,8 +117,8 @@ class Sameday extends Component {
                                     lastname={lead.lastname}
                                     company={lead.company}
                                 />
-                                <div style={{ margin: "50px" }}>
-                                    <QRCode
+                                <div style={{ margin: "50px", background:"pink" }}>
+                                    <QRCode                               
                                         style={{ width: 256 }}
                                         value={JSON.stringify({
                                             firstname: lead.firstname,
