@@ -6,9 +6,10 @@ import React, { Component } from "react";
 // import VendorLeadTable from "../components/VendorLeadTable"
 import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
+import HotLead from "../components/HotLead"; 
+import Navbar from "../components/Navbar";
 
 import QrReader from "react-qr-reader";
 
@@ -53,7 +54,8 @@ class Profile extends Component {
       result: "No result"
     };
     this.handleScan = this.handleScan.bind(this);
-  }
+	}
+	
   handleScan(data) {
     if (data) {
 
@@ -75,12 +77,9 @@ class Profile extends Component {
 			this.handleFormSubmit();
 
 			return;
-			// we will add handleformsubmot
-
-
-
-
-    }
+			
+		}
+		
   }
   handleError(err) {
     console.error(err);
@@ -111,15 +110,7 @@ class Profile extends Component {
     console.log("leads", this.state.leads);
   };
 
-  //Writes a report.txt file of all leads from database
-  // createReport = (res) => {
-  //   alert("createReport");
-  //   API.getBooks(res)
-  //     .then(res => this.setState({ leads: res.data }))
-  //     .catch(err => console.log(err));
-  //   console.log("leads from createreport", this.state.leads);
-
-  // }
+ 
 
   readFile = (res) => {
     API.getBooks(res)
@@ -174,6 +165,7 @@ class Profile extends Component {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
+      // qrValue: "firstname: " + this.state.firstname + "lastname: " + this.state.lastname + "company: " + this.state.company
     });
   };
 
@@ -199,10 +191,8 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <h1 className="text-center">Welcome Company</h1>
-        <h3 className="text-center">
-          Click scan to scan badges or Report to see booth visitor data.
-        </h3>
+				
+      
 
         <QrReader
           delay={this.state.delay}
@@ -256,14 +246,18 @@ class Profile extends Component {
           placeholder="Phone Number"
         />
 
-        <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
-        <button className="scanButton">Scan</button>
-        <button onClick={this.readFile} className="reportButton">Report</button>
-
-
-        <Jumbotron>
-          <h1>List of Leads</h1>
-        </Jumbotron>
+<button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
+        <br></br>
+{/* buttons */}
+        <div className="row justify-content-center text-center">
+        <div className="addLeadBtns col-md-11 ">
+        <button className="scanButton col-md-3">SCAN LEAD</button>
+        <button className="manualEnterBtn col-md-3">ENTER LEAD</button>
+</div>
+        </div>
+       
+				   <div className="col-md-6 scannedList">
+				<button onClick={this.readFile} className="btn btn-link reportButton text-right">Export as a .csv</button>
         {this.state.leads ? (
           <List>
             {this.state.leads.map(lead => (
@@ -281,6 +275,7 @@ class Profile extends Component {
             <h3>No Results to Display</h3>
           )}
       </div>
+			</div>
     );
   }
 }

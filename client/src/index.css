@@ -11,11 +11,78 @@ body,
 div[data-reactroot] {
   height: 100%;
   padding: 0;
-  margin: 0;
+	margin: 0;
+	background-color: white;
 }
 
 .qrReader {
 	width: 320px;
 	margin: 0 auto;
 	padding: 30px 0;
+}
+
+.samedayform {
+	margin: 0 auto;
+	padding: 50px 10px;
+}
+
+.qrCode {
+	margin: 0 auto !important;
+}
+
+.sameDayBtn, 
+.bulkBadgeBtn {
+background-color: #DECC49;
+color: white;
+margin: 20px;
+height: 200px;
+font-size: 40px;
+}
+
+.bulkBadgeBtn {
+	background-color: gray;
+}
+
+.viewAllLeads {
+	color: white;
+	background-color: black;
+}
+
+.viewLeads {
+	margin: 0 auto;
+	height: 150px;
+	width: 100%; 
+}
+
+
+@media screen and (max-width: 610px) {
+	h1 {
+		font-size: 30px;
+		padding-top: 10px;
+	}
+}
+
+@media screen and (max-width: 509px) {
+	h1 {
+		font-size: 25px;
+		padding-top: 10px;
+	}
+}
+
+@media screen and (max-width: 440px) {
+	h1 {
+		font-size: 20px;
+		padding-top: 10px;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	h1 {
+		font-size: 17px;
+		padding-top: 10px;
+	}
+
+	.logout {
+		font-size: 20px
+	}
 }

@@ -3,10 +3,10 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import API from "../utils/API";
 //import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
 import Badge from "../components/Badge";
-//import { List } from "../components/List";
-//import { ListItem } from "../components/List";
+import { List } from "../components/List";
+import { ListItem } from "../components/List";
+import Navbar from "../components/Navbar"; 
 
 import {QRCode} from 'react-qr-svg';
 
@@ -33,9 +33,12 @@ class Sameday extends Component {
 
   // Loads all books  and sets them to this.state.books
   loadLeads = (res) => {
+		console.log("RES: ", res);
     API.getBooks(res)
-      .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "", qrValue:""})
-      )
+      .then(res => {
+				console.log('HELLO', res);
+				this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "", qrValue:""})
+			})
       .catch(err => console.log(err));
     console.log("leads", this.state.leads);
   };
@@ -142,18 +145,21 @@ class Sameday extends Component {
   render() {
     return (
       <div>
-        <h1 className="text-center">Welcome Company</h1>
-        <h3 className="text-center">
-          Click scan to scan badges or Report to see booth visitor data.
-        </h3>
-        {/* <input onChange={this.handleInputChange} className="firstname" placeholder = "firstname" value={this.state.firstname}></input> */}
+				<Navbar>
+				<h1>Sameday Registration</h1>
+				</Navbar>
+        
+				{/* <input onChange={this.handleInputChange} className="firstname" placeholder = "firstname" value={this.state.firstname}></input> */}
+				<div className="col-md-6 samedayform"> 
+				<div className="form-group">
         <input
 					// onChange={(e) => this.setState({qrValue: e.target.value})}
           value={this.state.firstname}
           name="firstname"
           onChange={this.handleInputChange}
           type="text"
-          placeholder="First Name"
+					placeholder="First Name"
+					className="form-control"
         />
         <input
 					// onChange={(e) => this.setState({qrValue: e.target.value})}
@@ -161,7 +167,8 @@ class Sameday extends Component {
           name="lastname"
           onChange={this.handleInputChange}
           type="text"
-          placeholder="Last Name"
+					placeholder="Last Name"
+					className="form-control"
         />
 				<input
 					// onChange={(e) => this.setState({qrValue: e.target.value})}
@@ -169,7 +176,8 @@ class Sameday extends Component {
           name="company"
           onChange={this.handleInputChange}
           type="text"
-          placeholder="Company Name"
+					placeholder="Company Name"
+					className="form-control"
         />
         <input
 					// onChange={(e) => this.setState({qrValue: e.target.value})}
@@ -177,7 +185,8 @@ class Sameday extends Component {
           name="position"
           onChange={this.handleInputChange}
           type="text"
-          placeholder="Position"
+					placeholder="Position"
+					className="form-control"
         />
         <input
 					// onChange={(e) => this.setState({qrValue: e.target.value})}
@@ -185,7 +194,8 @@ class Sameday extends Component {
           name="email"
           onChange={this.handleInputChange}
           type="text"
-          placeholder="Email"
+					placeholder="Email"
+					className="form-control"
         />
         <input
 					// onChange={(e) => this.setState({qrValue: e.target.value})}
@@ -193,11 +203,14 @@ class Sameday extends Component {
           name="phone"
           onChange={this.handleInputChange}
           type="text"
-          placeholder="Phone Number"
+					placeholder="Phone Number"
+					className="form-control"
         />
 
         <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
-       <button onClick={this.readFile} className="reportButton">Report</button>
+        {/* <button onClick={this.readFile} className="reportButton">Report</button> */}
+				</div>
+				</div>
 
         <Badge
           firstname={this.state.firstname}
@@ -205,19 +218,10 @@ class Sameday extends Component {
           company={this.state.company}
           qrValue={this.state.qrValue}
         />
-				<div style={{margin:"50px"}}>
+				<div className="qrCode">
 					<QRCode
-						style={{width:256}}
-						value={
-              JSON.stringify({
-                firstname: this.state.firstname,
-                lastname: this.state.lastname,
-                company: this.state.company,
-                position: this.state.position,
-                email: this.state.email,
-                phone: this.state.phone
-              })
-            }
+            className="qr-code"
+						value={this.state.qrValue}
 					/>
 				</div>
         <button onClick={this.getPDF} className="saveDataButton">Create PDF</button>

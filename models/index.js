@@ -1,3 +1,4 @@
 module.exports = {
-  Scan: require("./scan")
+	Scan: require("./scan"),
+	Vendor:require("./vendors")
 };
