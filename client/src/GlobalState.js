@@ -6,7 +6,7 @@ class GlobalState extends Component {
 		super (props)
 		this.state = {
 			test: "I am the test",
-			vendor:"Clayton Co",
+			vendor:"",
 			authenticated: false,
 			authRes: null
 		}
@@ -27,6 +27,17 @@ class GlobalState extends Component {
 		this.props.history.push('/profile')
 	}
 
+	logOut = () =>{
+		this.setState({
+			authenticated: false,
+			vendor: "",
+			authRes: null
+		})
+		this.props.history.push('/login')
+		console.log("Logged out successfully")
+		
+	}
+
 	render() {
 		console.log(this.state)
 		return (
@@ -34,7 +45,8 @@ class GlobalState extends Component {
 				value={{
 					state: this.state,
 					updateVendor: this.updateVendor,
-					setAuthRes: this.setAuthRes
+					setAuthRes: this.setAuthRes,
+					logOut: this.logOut
 				}}
 			>
 				{this.props.children}
