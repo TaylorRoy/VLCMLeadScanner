@@ -221,7 +221,14 @@ class Sameday extends Component {
 				<div className="qrCode">
 					<QRCode
             className="qr-code"
-						value={this.state.qrValue}
+						value={JSON.stringify({
+							firstname: this.state.firstname,
+							lastname: this.state.lastname,
+							company: this.state.company,
+							position: this.state.position,
+							email: this.state.email,
+							phone: this.state.phone
+					})}
 					/>
 				</div>
         <button onClick={this.getPDF} className="saveDataButton">Create PDF</button>
