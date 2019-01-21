@@ -8,28 +8,12 @@ import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
-import HotLead from "../components/HotLead"; 
+import HotLead from "../components/HotLead";
 import Navbar from "../components/Navbar";
-
 import QrReader from "react-qr-reader";
 
-// class Profile extends Component {
-
-
-//   render() {
-//     return (
-//       <div style={{ ProfileBtn }} className="text-center scanner">
-
-//         <button className="scanButton">SCAN <br /> BADGE</button>
-//         <button className="reportButton">MANUALLY <br /> ENTER LEAD</button>
-//         <p>List rendered below from db</p>
-//       </div>
-//     );
-// 	}
-
-// }
-
 class Profile extends Component {
+
   // Setting our component's initial state
   state = {
     image: "",
@@ -54,47 +38,47 @@ class Profile extends Component {
       result: "No result"
     };
     this.handleScan = this.handleScan.bind(this);
-	}
-	
+  }
+
   handleScan(data) {
     if (data) {
 
-			let whatIread = data;
-			console.log("The QR code says: " + whatIread)
+      let whatIread = data;
+      console.log("The QR code says: " + whatIread)
 
 
-			var newObject = JSON.parse(whatIread);
-			console.log(newObject);
-			console.log("new Data is a: " + newObject);
-			console.log(newObject.firstname);
-			this.state.firstname = newObject.firstname;
-			this.state.lastname = newObject.lastname;
-			this.state.company = newObject.company;
-			this.state.position = newObject.position;
-			this.state.email = newObject.email;
-			this.state.phone = newObject.phone;
+      var newObject = JSON.parse(whatIread);
+      console.log(newObject);
+      console.log("new Data is a: " + newObject);
+      console.log(newObject.firstname);
+      this.state.firstname = newObject.firstname;
+      this.state.lastname = newObject.lastname;
+      this.state.company = newObject.company;
+      this.state.position = newObject.position;
+      this.state.email = newObject.email;
+      this.state.phone = newObject.phone;
 
-			this.handleFormSubmit();
+      this.handleFormSubmit();
 
-			return;
-			
-		}
-		
+      return;
+
+    }
+
   }
   handleError(err) {
     console.error(err);
-	}
-	// END OF QR CODE STUFF
+  }
+  // END OF QR CODE STUFF
 
 
-  // Whens the component mounts, load all books and save them to this.state.books
+  // Whens the component mounts, load all leads and save them to this.state.leads
   componentDidMount() {
     this.loadLeads();
   }
 
-  // Loads all books  and sets them to this.state.books
+  // Loads all leads and sets them to this.state.leads
   loadLeads = (res) => {
-    API.getBooks(res)
+    API.getLeads(res)
       .then(res => this.setState({
         leads: res.data,
         firstname: "",
@@ -110,10 +94,10 @@ class Profile extends Component {
     console.log("leads", this.state.leads);
   };
 
- 
 
+  //function used to create vlcmReport.csv file of all leads in database
   readFile = (res) => {
-    API.getBooks(res)
+    API.getLeads(res)
       .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "" })
       )
       .catch(err => console.log(err));
@@ -136,7 +120,7 @@ class Profile extends Component {
     console.log("jsonArray befor join", jsonArray);
 
     //loop through jsonArray and join data inside of array into string based on commas
-    for (var j =0; j<jsonArray.length; j++) {
+    for (var j = 0; j < jsonArray.length; j++) {
       csvRow.push(jsonArray[j].join(","))
     }
     console.log("csvRow after join", csvRow);
@@ -154,27 +138,25 @@ class Profile extends Component {
   };
 
   // Deletes a book from the database with a given id, then reloads books from the db
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
-  };
+  // deleteBook = id => {
+  //   API.deleteBook(id)
+  //     .then(res => this.loadBooks())
+  //     .catch(err => console.log(err));
+  // };
 
   // Handles updating component state when the user types into the input field
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
-      // qrValue: "firstname: " + this.state.firstname + "lastname: " + this.state.lastname + "company: " + this.state.company
     });
   };
 
-  // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
+  // When the form is submitted, use the API.saveLead method to save the lead data
+  // Then reload lead from the database with loadLeads()
   handleFormSubmit = event => {
-    alert("yo");
 
-    API.saveBook({
+    API.saveLead({
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       company: this.state.company,
@@ -184,15 +166,15 @@ class Profile extends Component {
     })
       .then(() => this.loadLeads())
       .catch(err => console.log(err));
-	};
+  };
 
 
 
   render() {
     return (
       <div>
-				
-      
+
+
 
         <QrReader
           delay={this.state.delay}
@@ -246,36 +228,36 @@ class Profile extends Component {
           placeholder="Phone Number"
         />
 
-<button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
-        <br></br>
-{/* buttons */}
-        <div className="row justify-content-center text-center">
-        <div className="addLeadBtns col-md-11 ">
-        <button className="scanButton col-md-3">SCAN LEAD</button>
-        <button className="manualEnterBtn col-md-3">ENTER LEAD</button>
-</div>
-        </div>
-       
-				   <div className="col-md-6 scannedList">
-				<button onClick={this.readFile} className="btn btn-link reportButton text-right">Export as a .csv</button>
-        {this.state.leads ? (
-          <List>
-            {this.state.leads.map(lead => (
-              <ListItem key={lead._id}>
-                <a href={"/scans/" + lead._id}>
-                  <strong>
-                    {lead.firstname} {lead.lastname}
-                  </strong>
-                </a>
-                <DeleteBtn />
-              </ListItem>
-            ))}
-          </List>
-        ) : (
-            <h3>No Results to Display</h3>
-          )}
+        <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
+        <br></br>
+        {/* buttons */}
+        <div className="row justify-content-center text-center">
+          <div className="addLeadBtns col-md-11 ">
+            <button className="scanButton col-md-3">SCAN LEAD</button>
+            <button className="manualEnterBtn col-md-3">ENTER LEAD</button>
+          </div>
+        </div>
+
+        <div className="col-md-6 scannedList">
+          <button onClick={this.readFile} className="btn btn-link reportButton text-right">Export as a .csv</button>
+          {this.state.leads ? (
+            <List>
+              {this.state.leads.map(lead => (
+                <ListItem key={lead._id}>
+                  <a href={"/scans/" + lead._id}>
+                    <strong>
+                      {lead.firstname} {lead.lastname}
+                    </strong>
+                  </a>
+                  <DeleteBtn />
+                </ListItem>
+              ))}
+            </List>
+          ) : (
+              <h3>No Results to Display</h3>
+            )}
+        </div>
       </div>
-			</div>
     );
   }
 }

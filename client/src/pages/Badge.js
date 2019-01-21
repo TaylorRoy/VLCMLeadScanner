@@ -11,6 +11,7 @@ import { ListItem } from "../components/List";
 import { QRCode } from 'react-qr-svg';
 
 class Sameday extends Component {
+
     // Setting our component's initial state
     state = {
         leads: [],
@@ -24,14 +25,14 @@ class Sameday extends Component {
     };
     count = 0;
 
-    // Whens the component mounts, load all books and save them to this.state.books
+    // Whens the component mounts, load all leads and save them to this.state.leads
     componentDidMount() {
         this.loadLeads();
     }
 
-    // Loads all books  and sets them to this.state.books
+    // Loads all leads  and sets them to this.state.leads
     loadLeads = (res) => {
-        API.getBooks(res)
+        API.getLeads(res)
             .then(res => this.setState({
                 leads: res.data,
                 firstname: "",
@@ -62,7 +63,7 @@ class Sameday extends Component {
         var timesToRun = 3
         for (var i = 0; i < timesToRun; i++) {
             makePdfPage(i)
-            function makePdfPage(i){
+            function makePdfPage(i) {
                 html2canvas(document.querySelectorAll(".list-group-item")[i]).then(canvas => {
                     // console.log("canvas", document.querySelectorAll(".list-group-item")[i]);
                     // document.body.appendChild(canvas);
@@ -76,7 +77,7 @@ class Sameday extends Component {
                     var imgData = canvas2.toDataURL('image/png');
                     doc.addImage(imgData, 'PNG', 100, 150, 100, 100);
                     doc.addPage();
-                    if(i >= timesToRun-1){
+                    if (i >= timesToRun - 1) {
                         doc.save("testttttt.pdf");
                     }
                     // var testImg = document.createElement('img')
@@ -117,8 +118,8 @@ class Sameday extends Component {
                                     lastname={lead.lastname}
                                     company={lead.company}
                                 />
-                                <div style={{ margin: "50px", background:"pink" }}>
-                                    <QRCode                               
+                                <div style={{ margin: "50px", background: "pink" }}>
+                                    <QRCode
                                         style={{ width: 256 }}
                                         value={JSON.stringify({
                                             firstname: lead.firstname,
@@ -132,11 +133,6 @@ class Sameday extends Component {
                                 </div>
                                 <DeleteBtn />
                             </ListItem>
-
-
-
-
-
                         ))}
                     </List>
                 ) : (
