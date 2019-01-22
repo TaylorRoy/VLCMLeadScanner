@@ -29,7 +29,7 @@ const App = (props) => (
 							{(global.state.authenticated && global.state.adminAuthenticated) && <Route exact path="/badge" component={Badge} />}
 							{(global.state.authenticated && global.state.adminAuthenticated) && <Route exact path="/sameday" component={Sameday} />}
 							{(global.state.authenticated && global.state.adminAuthenticated) && <Route exact path="/UploadLeadList" component={UploadLeadList} />}
-							{(global.state.authenticated && global.state.adminAuthenticated) && <Route exact path="/ManualLead" component={ManualLead} />}
+							{(global.state.authenticated) && <Route exact path="/ManualLead" component={ManualLead} />}
 
 
 						</div>
