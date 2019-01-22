@@ -6,9 +6,9 @@ import API from "../utils/API";
 import Badge from "../components/Badge";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
-import Navbar from "../components/Navbar"; 
+import Navbar from "../components/Navbar";
 
-import {QRCode} from 'react-qr-svg';
+import { QRCode } from 'react-qr-svg';
 
 
 
@@ -22,79 +22,26 @@ class Sameday extends Component {
     position: "",
     email: "",
     phone: "",
-		qrValue: ""
+    qrValue: ""
   };
   count = 0;
 
-  // Whens the component mounts, load all books and save them to this.state.books
+  // Whens the component mounts, load all leads and save them to this.state.leads
   componentDidMount() {
     this.loadLeads();
   }
 
-  // Loads all books  and sets them to this.state.books
+  // Loads all leads  and sets them to this.state.leads
   loadLeads = (res) => {
-		console.log("RES: ", res);
-    API.getBooks(res)
+    console.log("RES: ", res);
+    API.getLeads(res)
       .then(res => {
-				console.log('HELLO', res);
-				this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "", qrValue:""})
-			})
+        console.log('HELLO', res);
+        this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "", qrValue: "" })
+      })
       .catch(err => console.log(err));
     console.log("leads", this.state.leads);
   };
-
-  //Writes a report.txt file of all leads from database
-  // createReport = (res) => {
-  //   alert("createReport");
-  //   API.getBooks(res)
-  //     .then(res => this.setState({ leads: res.data }))
-  //     .catch(err => console.log(err));
-  //   console.log("leads from createreport", this.state.leads);
-
-  // }
-
-  //   readFile = (res) => {
-  //     API.getBooks(res)
-  //       .then(res => this.setState({ leads: res.data, firstname: "", lastname: "", company: "", position: "", email: "", phone: "" })
-  //       )
-  //       .catch(err => console.log(err));
-  //     console.log("leads", this.state.leads);
-
-  //     //create empty array to push json into later
-  //     var csvRow = [];
-
-  //     //save this.state.leads into another variable
-  //     var jsonLeads = this.state.leads;
-  //     console.log("jsonLeads", jsonLeads);
-
-  //     //create an array with an array of header strings which we will push json into
-  //     var jsonArray = [["_id", "firstname", "lastname", "company", "position", "email", "phone", "date"]];
-
-  //     //loop through jsonLeads and push into jsonArray
-  //     for (var i=0; i<jsonLeads.length; i++) {
-  //       jsonArray.push([jsonLeads[i]._id , jsonLeads[i].firstname, jsonLeads[i].lastname, jsonLeads[i].company, jsonLeads[i].position, jsonLeads[i].email, jsonLeads[i].phone, jsonLeads[i].date]);
-  //     }
-  //     console.log("jsonArray befor join", jsonArray);
-
-  //     //loop through jsonArray and join data inside of array into string based on commas
-  //     for (var i =0; i<jsonArray.length; i++) {
-  //       csvRow.push(jsonArray[i].join(","))
-  //     }
-  //     console.log("csvRow after join", csvRow);
-  //     //add %0A where there is a space to indicate where csv file should start a new line
-  //     var csvString = csvRow.join("%0A");
-  //     console.log("csvString", csvString);
-
-  //     //output csv file
-  //     var a = document.createElement("a");
-  //     a.href = 'data:attachment/csv,' + csvString;
-  //     a.target = "_Blank";
-  //     a.download = "vlcmReport.csv";
-  //     document.body.appendChild(a);
-  //     a.click();
-  //   };
-
-
 
   // Deletes a book from the database with a given id, then reloads books from the db
   //   deleteBook = id => {
@@ -111,11 +58,11 @@ class Sameday extends Component {
     });
   };
 
-  // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
+  // When the form is submitted, use the API.saveLead method to save the lead data
+  // Then reload leads from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    API.saveBook({
+    API.saveLead({
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       company: this.state.company,
@@ -145,72 +92,72 @@ class Sameday extends Component {
   render() {
     return (
       <div>
-				<Navbar>
-				<h1>Sameday Registration</h1>
-				</Navbar>
-        
-				{/* <input onChange={this.handleInputChange} className="firstname" placeholder = "firstname" value={this.state.firstname}></input> */}
-				<div className="col-md-6 samedayform"> 
-				<div className="form-group">
-        <input
-					// onChange={(e) => this.setState({qrValue: e.target.value})}
-          value={this.state.firstname}
-          name="firstname"
-          onChange={this.handleInputChange}
-          type="text"
-					placeholder="First Name"
-					className="form-control"
-        />
-        <input
-					// onChange={(e) => this.setState({qrValue: e.target.value})}
-          value={this.state.laststname}
-          name="lastname"
-          onChange={this.handleInputChange}
-          type="text"
-					placeholder="Last Name"
-					className="form-control"
-        />
-				<input
-					// onChange={(e) => this.setState({qrValue: e.target.value})}
-          value={this.state.company}
-          name="company"
-          onChange={this.handleInputChange}
-          type="text"
-					placeholder="Company Name"
-					className="form-control"
-        />
-        <input
-					// onChange={(e) => this.setState({qrValue: e.target.value})}
-          value={this.state.position}
-          name="position"
-          onChange={this.handleInputChange}
-          type="text"
-					placeholder="Position"
-					className="form-control"
-        />
-        <input
-					// onChange={(e) => this.setState({qrValue: e.target.value})}
-          value={this.state.email}
-          name="email"
-          onChange={this.handleInputChange}
-          type="text"
-					placeholder="Email"
-					className="form-control"
-        />
-        <input
-					// onChange={(e) => this.setState({qrValue: e.target.value})}
-          value={this.state.phone}
-          name="phone"
-          onChange={this.handleInputChange}
-          type="text"
-					placeholder="Phone Number"
-					className="form-control"
-        />
+        <Navbar>
+          <h1>Sameday Registration</h1>
+        </Navbar>
 
-        <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
-        {/* <button onClick={this.readFile} className="reportButton">Report</button> */}
-				</div>
-				</div>
+        {/* <input onChange={this.handleInputChange} className="firstname" placeholder = "firstname" value={this.state.firstname}></input> */}
+        <div className="col-md-6 samedayform">
+          <div className="form-group">
+            <input
+              // onChange={(e) => this.setState({qrValue: e.target.value})}
+              value={this.state.firstname}
+              name="firstname"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="First Name"
+              className="form-control"
+            />
+            <input
+              // onChange={(e) => this.setState({qrValue: e.target.value})}
+              value={this.state.laststname}
+              name="lastname"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Last Name"
+              className="form-control"
+            />
+            <input
+              // onChange={(e) => this.setState({qrValue: e.target.value})}
+              value={this.state.company}
+              name="company"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Company Name"
+              className="form-control"
+            />
+            <input
+              // onChange={(e) => this.setState({qrValue: e.target.value})}
+              value={this.state.position}
+              name="position"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Position"
+              className="form-control"
+            />
+            <input
+              // onChange={(e) => this.setState({qrValue: e.target.value})}
+              value={this.state.email}
+              name="email"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Email"
+              className="form-control"
+            />
+            <input
+              // onChange={(e) => this.setState({qrValue: e.target.value})}
+              value={this.state.phone}
+              name="phone"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Phone Number"
+              className="form-control"
+            />
+
+            <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
+            {/* <button onClick={this.readFile} className="reportButton">Report</button> */}
+          </div>
+        </div>
 
         <Badge
           firstname={this.state.firstname}
@@ -218,12 +165,19 @@ class Sameday extends Component {
           company={this.state.company}
           qrValue={this.state.qrValue}
         />
-				<div className="qrCode">
-					<QRCode
+        <div className="qrCode">
+          <QRCode
             className="qr-code"
-						value={this.state.qrValue}
-					/>
-				</div>
+            value={JSON.stringify({
+              firstname: this.state.firstname,
+              lastname: this.state.lastname,
+              company: this.state.company,
+              position: this.state.position,
+              email: this.state.email,
+              phone: this.state.phone
+            })}
+          />
+        </div>
         <button onClick={this.getPDF} className="saveDataButton">Create PDF</button>
       </div>
     );

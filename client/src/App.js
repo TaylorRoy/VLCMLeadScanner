@@ -16,8 +16,6 @@ const App = (props) => (
 			{(global) => (
 				<React.Fragment>
 					
-
-const App = () => (
   
 					<Switch>
 						<div>
@@ -26,10 +24,10 @@ const App = () => (
 							<Route exact path="/" component={Login} />
 							<Route exact path="/login" component={Login} />
 							{global.state.authenticated && <Route exact path="/profile" component={Profile} />}
-							<Route exact path="/admin" component={Admin} />
-							<Route exact path="/badge" component={Badge} />
-							<Route exact path="/sameday" component={Sameday} />
-							<Route exact path="/UploadLeadList" component={UploadLeadList} />
+							{global.state.authenticated && <Route exact path="/admin" component={Admin} />}
+							{global.state.authenticated && <Route exact path="/badge" component={Badge} />}
+							{global.state.authenticated && <Route exact path="/sameday" component={Sameday} />}
+							{global.state.authenticated && <Route exact path="/UploadLeadList" component={UploadLeadList} />}
 
 
 						</div>
