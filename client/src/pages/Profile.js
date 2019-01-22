@@ -270,8 +270,8 @@ class Profile extends Component {
             <h3>No Results to Display</h3>
           )}
       </div>
-</div>
-		); 
+			</div>
+    );
   }
 }
 
