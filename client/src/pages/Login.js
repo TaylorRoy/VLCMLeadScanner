@@ -60,7 +60,7 @@ class Login extends React.Component {
 								</Row>
 								<Row>
 									<Col size="lg-12">
-										<input name="password" className="password" placeholder="password" value={this.state.password}
+										<input name="password" type="password" className="password" placeholder="password" value={this.state.password}
 										onChange={this.handleInputChange}></input>
 									</Col>
 								</Row>

@@ -12,7 +12,7 @@ import { QRCode } from 'react-qr-svg';
 
 
 
-class Sameday extends Component {
+class ManualLead extends Component {
   // Setting our component's initial state
   state = {
 
@@ -157,29 +157,10 @@ class Sameday extends Component {
           </div>
         </div>
 
-        <Badge
-          firstname={this.state.firstname}
-          lastname={this.state.lastname}
-          company={this.state.company}
-          qrValue={this.state.qrValue}
-        />
-        <div className="qrCode">
-          <QRCode
-            className="qr-code"
-            value={JSON.stringify({
-              firstname: this.state.firstname,
-              lastname: this.state.lastname,
-              company: this.state.company,
-              position: this.state.position,
-              email: this.state.email,
-              phone: this.state.phone
-            })}
-          />
-        </div>
-        <button onClick={this.getPDF} className="saveDataButton">Create PDF</button>
+        
       </div>
     );
   }
 }
 
-export default Sameday;
+export default ManualLead;

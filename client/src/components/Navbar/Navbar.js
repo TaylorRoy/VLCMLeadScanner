@@ -21,7 +21,7 @@ class Navbar extends React.Component {
 			<Consumer>
 				{(global) => (
 
-					<nav className="navbar navbar-expand-lg bg-dark justify-content-center">
+					<nav className="navbar navbar-expand-lg bg-dark justify-content-center" style={{textAlign: 'center'}}>
 						{<h1>{global.state.vendor}</h1>}
 
 						{<p className="logout" onClick={this.signOut}><i class="fas fa-sign-out-alt"></i></p>}
