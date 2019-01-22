@@ -25,11 +25,11 @@ const App = (props) => (
 							<Route exact path="/" component={Login} />
 							<Route exact path="/login" component={Login} />
 							{global.state.authenticated && <Route exact path="/profile" component={Profile} />}
-							{global.state.authenticated && <Route exact path="/admin" component={Admin} />}
-							{global.state.authenticated && <Route exact path="/badge" component={Badge} />}
-							{global.state.authenticated && <Route exact path="/sameday" component={Sameday} />}
-							{global.state.authenticated && <Route exact path="/UploadLeadList" component={UploadLeadList} />}
-							{global.state.authenticated && <Route exact path="/ManualLead" component={ManualLead} />}
+							{(global.state.authenticated && global.state.adminAuthenticated) && <Route exact path="/admin" component={Admin} />}
+							{(global.state.authenticated && global.state.adminAuthenticated) && <Route exact path="/badge" component={Badge} />}
+							{(global.state.authenticated && global.state.adminAuthenticated) && <Route exact path="/sameday" component={Sameday} />}
+							{(global.state.authenticated && global.state.adminAuthenticated) && <Route exact path="/UploadLeadList" component={UploadLeadList} />}
+							{(global.state.authenticated && global.state.adminAuthenticated) && <Route exact path="/ManualLead" component={ManualLead} />}
 
 
 						</div>

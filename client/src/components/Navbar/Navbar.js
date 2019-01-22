@@ -1,11 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import "./Navbar.css";
 import Consumer from "../../GlobalState"
 import API from "../../utils/API";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
-class Navbar extends React.Component {
+class Navbar extends Component {
 
 	signOut = (event) => {
 		console.log("Signing Out....")

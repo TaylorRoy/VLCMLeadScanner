@@ -223,5 +223,10 @@
     "Company": "Vmware-Breakout",
     "Username": "Vmware-Breakout",
     "Password": "itx@852"
-  }
+	},
+	{
+		"Company": "VLCM",
+		"Username": "Admin",
+		"Password": "itx@852"
+	}
 ]
