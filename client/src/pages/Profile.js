@@ -10,14 +10,10 @@ import { List } from "../components/List";
 import { ListItem } from "../components/List";
 import HotLead from "../components/HotLead";
 import Navbar from "../components/Navbar";
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> master
+
+
 import { Link } from 'react-router-dom'
 
->>>>>>> Stashed changes
 import QrReader from "react-qr-reader";
 
 class Profile extends Component {
@@ -181,19 +177,12 @@ class Profile extends Component {
   render() {
     return (
       <div>
-<<<<<<< Updated upstream
-
-
-
-=======
 				
       
 			<br></br>
 			<div class="qrReader"> 
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> master
+
+\
         <QrReader
           delay={this.state.delay}
           onError={this.handleError}
@@ -285,12 +274,8 @@ class Profile extends Component {
             <h3>No Results to Display</h3>
           )}
       </div>
-<<<<<<< HEAD
-			</div>
-			</div>
-=======
->>>>>>> master
-    );
+</div>
+		); 
   }
 }
 
