@@ -10,8 +10,6 @@ import { List } from "../components/List";
 import { ListItem } from "../components/List";
 import HotLead from "../components/HotLead";
 import Navbar from "../components/Navbar";
-
-
 import { Link } from 'react-router-dom'
 
 import QrReader from "react-qr-reader";
@@ -181,8 +179,6 @@ class Profile extends Component {
       
 			<br></br>
 			<div class="qrReader"> 
-
-\
         <QrReader
           delay={this.state.delay}
           onError={this.handleError}
@@ -275,7 +271,7 @@ class Profile extends Component {
           )}
       </div>
 </div>
-		); 
+	
   }
 }
 
