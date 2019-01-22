@@ -10,8 +10,10 @@
 	font-size: 30px;
 }
 
+
 .reportButton {
 	background: #B3B3B3;
+	float: left;
 }
 
 @media screen and (max-width: 668px) {

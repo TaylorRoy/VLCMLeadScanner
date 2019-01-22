@@ -54,6 +54,27 @@ font-size: 40px;
 	width: 100%; 
 }
 
+.qrReader {
+	margin: 0 auto; 
+}
+
+.scannedList {
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+
+.reportButton {
+margin: 0 auto;
+}
+
+a {
+	color: black !important;
+}
+
+.leadPosition,
+.leadCompany {
+	color: gray;
+}
 
 @media screen and (max-width: 610px) {
 	h1 {

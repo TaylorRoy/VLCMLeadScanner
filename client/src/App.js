@@ -16,8 +16,6 @@ const App = (props) => (
 			{(global) => (
 				<React.Fragment>
 					
-
-
   
 					<Switch>
 						<div>

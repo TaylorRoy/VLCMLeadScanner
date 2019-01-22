@@ -4,6 +4,7 @@ const db = require("../models");
 module.exports = {
 
 login: function(req,res){
+	
 
 	
 	db.Vendor
