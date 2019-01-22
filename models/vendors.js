@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const vendorSchema = new Schema({
   Company: { type: String, required: true },
-	Username: { type: String, required: true },
+	Username: { type: String, unique: true, required: true },
 	Password: { type: String, required: true }
 });
 
