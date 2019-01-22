@@ -2,15 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Consumer from "../../GlobalState"
+import API from "../../utils/API";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
-const Navbar = props => (
-	<Consumer>
-		{(global) => (
+class Navbar extends React.Component {
 
 			<nav className="navbar navbar-expand-lg bg-dark justify-content-center">
 				{<h1>{global.state.vendor}</h1>}
-				<input onChange={global.updateVendor}/>
+			
 				{<p className="logout"><i class="fas fa-sign-out-alt"></i></p>}
 				{/* <Link className="navbar-brand" to="/">
       Valcom Logo
@@ -68,8 +67,26 @@ const Navbar = props => (
       </ul>
     </div> */}
 			</nav>
-		)}
+		
 	</Consumer>
 );
 
-export default Navbar;
+					<nav className="navbar navbar-expand-lg bg-dark justify-content-center">
+						{<h1>{global.state.vendor}</h1>}
+
+						{<p className="logout" onClick={this.signOut}><i class="fas fa-sign-out-alt"></i></p>}
+
+					</nav>
+				)}
+			</Consumer>
+		);
+
+	}
+}
+export default props => (
+	<Consumer>
+		{(global) => {
+			return <Navbar {...props} global={global} />
+		}}
+	</Consumer>
+)
