@@ -13,6 +13,7 @@ import Navbar from "../components/Navbar";
 import { Link } from 'react-router-dom'
 
 import QrReader from "react-qr-reader";
+import Consumer from './../GlobalState'
 
 class Profile extends Component {
 
@@ -172,6 +173,13 @@ class Profile extends Component {
 			.catch(err => console.log(err));
 	};
 
+	goToManualLeads = (event) => {
+		console.log("Redirect to Manual Lead page")
+		event.preventDefault()
+
+		this.props.global.setPage("/ManualLead")
+	}
+
 
 
 	render() {
@@ -239,8 +247,8 @@ class Profile extends Component {
 				<div className="row justify-content-center text-center">
 					<div className="addLeadBtns col-md-11 ">
 
-						<Link to="/ManualLead"><button className="manualEnterBtn col-md-3">Enter Lead</button>
-						</Link>
+						<button className="manualEnterBtn col-md-3" onClick={this.goToManualLeads}>Enter Lead</button>
+						
 
 
 					</div>
@@ -278,4 +286,10 @@ class Profile extends Component {
 	}
 }
 
-export default Profile;
+export default props => (
+	<Consumer>
+		{(global) => {
+			return <Profile {...props} global={global} />
+		}}
+	</Consumer>
+)

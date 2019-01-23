@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
-const leadSeed = require ("./leads")
+const attendeeSeed = require ("./attendee")
 
 
 // This file empties the Books collection and inserts the books below
@@ -11,9 +11,9 @@ mongoose.connect(
 );
 
 
-db.Scan
+db.Attendee
   .remove({})
-  .then(() => db.Scan.collection.insertMany(leadSeed))
+  .then(() => db.Attendee.collection.insertMany(attendeeSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
