@@ -37,7 +37,7 @@ class Profile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			delay: 300,
+			delay: 2000,
 			result: "No result"
 		};
 		this.handleScan = this.handleScan.bind(this);
@@ -60,6 +60,8 @@ class Profile extends Component {
 			this.state.position = newObject.position;
 			this.state.email = newObject.email;
 			this.state.phone = newObject.phone;
+
+
 
 			this.handleFormSubmit();
 
