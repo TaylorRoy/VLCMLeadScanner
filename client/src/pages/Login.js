@@ -22,7 +22,7 @@ class Login extends React.Component {
 	}
 
 	verifyLogin = (event) => {
-		console.log("hit")
+		
 		event.preventDefault()
 
 		API.login({
@@ -31,7 +31,7 @@ class Login extends React.Component {
 		})
 			.then((res) => {
 				this.props.global.setAuthRes(res.data)
-				console.log(res, "login verified")
+				
 			})
 			.catch((err) => {
 				console.log(err)

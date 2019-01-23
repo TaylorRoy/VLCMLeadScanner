@@ -15,9 +15,16 @@ export default {
   // Saves a lead to the database
   saveLead: function (leadData) {
     return axios.post("/api/leads", leadData);
-  }
+	},
+	
+	deleteLead: function(id) {
+    return axios.delete("/api/leads/" + id);
+  },
 
 
+	saveAttendee:  function(attendee) {
+		return axios.post("/api/attendee/add",attendee)
+	}
   // Gets the book with the given id
   // getBooks: function(id) {
   //   return axios.get("/api/books/" + id);

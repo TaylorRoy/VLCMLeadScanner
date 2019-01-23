@@ -33,7 +33,7 @@ class Sameday extends Component {
 
   // Loads all leads  and sets them to this.state.leads
   loadLeads = (res) => {
-    console.log("RES: ", res);
+    
     API.getLeads(res)
       .then(res => {
         console.log('HELLO', res);
@@ -62,7 +62,7 @@ class Sameday extends Component {
   // Then reload leads from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    API.saveLead({
+    API.saveAttendee({
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       company: this.state.company,
@@ -70,7 +70,9 @@ class Sameday extends Component {
       email: this.state.email,
       phone: this.state.phone
     })
-      .then(() => this.loadLeads())
+			.then((res) => {
+				console.log(res) 
+				this.loadLeads()})
       .catch(err => console.log(err));
   };
 
