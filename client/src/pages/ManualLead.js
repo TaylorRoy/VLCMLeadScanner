@@ -87,7 +87,9 @@ class ManualLead extends Component {
       doc.addImage(image, "JPEG", 20, 20);
       doc.save("test.pdf");
     });
-  }
+	}
+	
+	
   // .getElementById(""
   render() {
     return (

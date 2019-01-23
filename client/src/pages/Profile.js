@@ -6,6 +6,7 @@ import { ListItem } from "../components/List";
 import { Link } from 'react-router-dom'
 
 import QrReader from "react-qr-reader";
+import Consumer from './../GlobalState'
 
 class Profile extends Component {
 
@@ -29,8 +30,8 @@ class Profile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			delay: 2000
-			// result: "No result"
+			delay: 2000,
+			result: "No result"
 		};
 		this.handleScan = this.handleScan.bind(this);
 	}
@@ -52,6 +53,8 @@ class Profile extends Component {
 			this.state.position = newObject.position;
 			this.state.email = newObject.email;
 			this.state.phone = newObject.phone;
+
+
 
 			this.handleFormSubmit();
 
@@ -163,6 +166,13 @@ class Profile extends Component {
 			.catch(err => console.log(err));
 	};
 
+	goToManualLeads = (event) => {
+		console.log("Redirect to Manual Lead page")
+		event.preventDefault()
+
+		this.props.global.setPage("/ManualLead")
+	}
+
 
 
 	render() {
@@ -269,4 +279,10 @@ class Profile extends Component {
 	}
 }
 
-export default Profile;
+export default props => (
+	<Consumer>
+		{(global) => {
+			return <Profile {...props} global={global} />
+		}}
+	</Consumer>
+)

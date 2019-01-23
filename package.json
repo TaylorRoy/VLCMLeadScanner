@@ -30,7 +30,7 @@
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
 		"client": "cd client && npm run start",
 		"vendor-seed": "node scripts/vendorSeed.js",
-		"lead-seed": "node scripts/leadsSeed.js",
+		"attendee-seed": "node scripts/attendeeSeed.js",
     "install": "cd client && yarn install",
     "build": "cd client && npm run build"
   },

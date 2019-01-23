@@ -15,14 +15,14 @@ module.exports = {
     })
   },
   findAll: function(req, res) {
-    db.Scan
+    db.Lead
       .find(req.query)
-      // .sort({ date: -1 })
+      .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    db.Scan
+    db.Lead
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -30,7 +30,7 @@ module.exports = {
   create: function(req, res) {
 		console.log(req.body)
     // console.log("in create", req);
-    db.Scan.create(req.body)
+    db.Lead.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => { 
 				console.log(err)
@@ -38,13 +38,13 @@ module.exports = {
 			});
   },
   update: function(req, res) {
-    db.Scan
+    db.Lead
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Scan
+    db.Lead
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
