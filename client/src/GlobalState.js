@@ -7,7 +7,7 @@ class GlobalState extends Component {
 		this.state = {
 			test: "I am the test",
 			vendor:"",
-			authenticated: false,
+			authenticated: true,
 			authRes: null
 		}
 	}
@@ -29,7 +29,7 @@ class GlobalState extends Component {
 
 	logOut = () =>{
 		this.setState({
-			authenticated: false,
+			authenticated: true,
 			vendor: "",
 			authRes: null
 		})
