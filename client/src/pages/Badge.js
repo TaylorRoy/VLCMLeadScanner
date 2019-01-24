@@ -64,7 +64,7 @@ class Sameday extends Component {
         for (var i = 0; i < timesToRun; i++) {
             makePdfPage(i)
             function makePdfPage(i) {
-                html2canvas(document.querySelectorAll(".list-group-item")[i]).then(canvas => {
+                html2canvas(document.querySelectorAll(".badgeContainer")[i]).then(canvas => {
                     // console.log("canvas", document.querySelectorAll(".list-group-item")[i]);
                     // document.body.appendChild(canvas);
                     var image = canvas.toDataURL("image/png");
@@ -75,7 +75,7 @@ class Sameday extends Component {
                     var canvas2 = document.createElement('canvas');
                     canvg(canvas2, svg);
                     var imgData = canvas2.toDataURL('image/png');
-                    doc.addImage(imgData, 'PNG', 100, 150, 100, 100);
+                    doc.addImage(imgData, 'PNG', 10, 80, 180, 100);
                     doc.addPage();
                     if (i >= timesToRun - 1) {
                         doc.save("testttttt.pdf");
@@ -120,7 +120,7 @@ class Sameday extends Component {
                                 />
                                 <div style={{ margin: "50px", background: "pink" }}>
                                     <QRCode
-                                        style={{ width: 256 }}
+                                        style={{ width: 256, marginLeft:  300 }}
                                         value={JSON.stringify({
                                             firstname: lead.firstname,
                                             lastname: lead.lastname,
