@@ -75,7 +75,7 @@ class Sameday extends Component {
                     var canvas2 = document.createElement('canvas');
                     canvg(canvas2, svg);
                     var imgData = canvas2.toDataURL('image/png');
-                    doc.addImage(imgData, 'PNG', 100, 100, 100, 100);
+                    doc.addImage(imgData, 'PNG', 10, 80, 180, 100);
                     doc.addPage();
                     if (i >= timesToRun - 1) {
                         doc.save("testttttt.pdf");
