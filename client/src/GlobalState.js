@@ -44,8 +44,7 @@ class GlobalState extends Component {
 
 	logOut = () =>{
 		this.setState({
-			authenticated: false,
-			adminAuthenticated:false,
+			authenticated: true,
 			vendor: "",
 			authRes: null
 		})

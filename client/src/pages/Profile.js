@@ -1,15 +1,8 @@
 import React, { Component } from "react";
-// import API from "../utils/API";
-// import Card from "../components/Card";
-// import Alert from "../components/Alert";
-// import ProfileBtn from "../components/ProfileBtn"
-// import VendorLeadTable from "../components/VendorLeadTable"
 import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
-import HotLead from "../components/HotLead";
-import Navbar from "../components/Navbar";
 import { Link } from 'react-router-dom'
 
 import QrReader from "react-qr-reader";
@@ -253,8 +246,8 @@ class Profile extends Component {
 				<div className="row justify-content-center text-center">
 					<div className="addLeadBtns col-md-11 ">
 
-						<button className="manualEnterBtn col-md-3" onClick={this.goToManualLeads}>Enter Lead</button>
-						
+						<Link to="/ManualLead"><button className="manualEnterBtn col-md-3">Manually Enter Lead</button>
+						</Link>
 
 
 					</div>
