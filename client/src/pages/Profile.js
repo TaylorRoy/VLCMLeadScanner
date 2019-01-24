@@ -1,18 +1,12 @@
 import React, { Component } from "react";
-// import API from "../utils/API";
-// import Card from "../components/Card";
-// import Alert from "../components/Alert";
-// import ProfileBtn from "../components/ProfileBtn"
-// import VendorLeadTable from "../components/VendorLeadTable"
 import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
-import HotLead from "../components/HotLead";
-import Navbar from "../components/Navbar";
 import { Link } from 'react-router-dom'
 
 import QrReader from "react-qr-reader";
+import Consumer from './../GlobalState'
 
 class Profile extends Component {
 
@@ -36,7 +30,7 @@ class Profile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			delay: 300,
+			delay: 2000,
 			result: "No result"
 		};
 		this.handleScan = this.handleScan.bind(this);
@@ -59,6 +53,8 @@ class Profile extends Component {
 			this.state.position = newObject.position;
 			this.state.email = newObject.email;
 			this.state.phone = newObject.phone;
+
+
 
 			this.handleFormSubmit();
 
@@ -170,6 +166,19 @@ class Profile extends Component {
 			.catch(err => console.log(err));
 	};
 
+	goToManualLeads = (event) => {
+		console.log("Redirect to Manual Lead page")
+		event.preventDefault()
+
+		this.props.global.setPage("/ManualLead")
+	}
+
+	deleteLead = id => {
+    API.deleteLead(id)
+      .then(res => this.loadLeads())
+      .catch(err => console.log(err));
+  };
+
 
 
 	render() {
@@ -237,7 +246,7 @@ class Profile extends Component {
 				<div className="row justify-content-center text-center">
 					<div className="addLeadBtns col-md-11 ">
 
-						<Link to="/ManualLead"><button className="manualEnterBtn col-md-3">Enter Lead</button>
+						<Link to="/ManualLead"><button className="manualEnterBtn col-md-3">Manually Enter Lead</button>
 						</Link>
 
 
@@ -263,7 +272,7 @@ class Profile extends Component {
 										<br></br>
 										<span className="leadPosition">{lead.company}</span>
 									</a>
-									<DeleteBtn />
+									<DeleteBtn onClick={() => this.deleteLead(lead._id)} />
 								</ListItem>
 							))}
 						</List>
@@ -276,4 +285,10 @@ class Profile extends Component {
 	}
 }
 
-export default Profile;
+export default props => (
+	<Consumer>
+		{(global) => {
+			return <Profile {...props} global={global} />
+		}}
+	</Consumer>
+)

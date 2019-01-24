@@ -87,11 +87,16 @@ class ManualLead extends Component {
       doc.addImage(image, "JPEG", 20, 20);
       doc.save("test.pdf");
     });
-  }
+	}
+	
+	
   // .getElementById(""
   render() {
     return (
       <div>
+				<div className="wrapper">
+				<h1 className="text-center" style={{padding: '0 0 30px 0'}}>Manually Enter Lead</h1>
+				<h3 className="col-md-6 justify-content-center" style={{margin: '0 auto'}}>Fill out the form below to manually enter your lead into the database. Return to the scanner page to view the lead after you hit submit.</h3>
       
 
         {/* <input onChange={this.handleInputChange} className="firstname" placeholder = "firstname" value={this.state.firstname}></input> */}
@@ -159,6 +164,7 @@ class ManualLead extends Component {
 
         
       </div>
+			</div>
     );
   }
 }

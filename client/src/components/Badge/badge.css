@@ -1,8 +1,15 @@
 .badgeContainer {
-  margin: 0 auto;
-    
+  margin: 0 auto; 
 }
 
-.badgeHeader {
-    background-color: green;
+.badgeName {
+	color: black !important;
+	margin-bottom: -30px !important;
+	font-size: 50px;
+}
+
+.badgeCompany {
+	color: gray; 
+	text-transform: uppercase;
+	font-weight: 400 !important;
 }

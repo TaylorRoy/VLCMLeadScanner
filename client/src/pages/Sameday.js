@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import API from "../utils/API";
+import canvg from 'canvg';
 //import DeleteBtn from "../components/DeleteBtn";
 import Badge from "../components/Badge";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
-
-
 import { QRCode } from 'react-qr-svg';
 
 
@@ -15,7 +14,7 @@ import { QRCode } from 'react-qr-svg';
 class Sameday extends Component {
   // Setting our component's initial state
   state = {
-
+		registered: [],
     firstname: "",
     lastname: "",
     company: "",
@@ -33,7 +32,7 @@ class Sameday extends Component {
 
   // Loads all leads  and sets them to this.state.leads
   loadLeads = (res) => {
-    console.log("RES: ", res);
+    
     API.getLeads(res)
       .then(res => {
         console.log('HELLO', res);
@@ -62,7 +61,7 @@ class Sameday extends Component {
   // Then reload leads from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    API.saveLead({
+    API.saveAttendee({
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       company: this.state.company,
@@ -70,7 +69,9 @@ class Sameday extends Component {
       email: this.state.email,
       phone: this.state.phone
     })
-      .then(() => this.loadLeads())
+			.then((res) => {
+				console.log(res) 
+				this.loadLeads()})
       .catch(err => console.log(err));
   };
 
@@ -78,22 +79,27 @@ class Sameday extends Component {
   getPDF = () => {
     console.log("in getPDF");
 
-
-    html2canvas(document.querySelector("#badgeContainer")).then(canvas => {
+    html2canvas(document.querySelector(".badgeContainer")).then(canvas => {
       console.log("canvas", canvas);
       document.body.appendChild(canvas);
       var image = canvas.toDataURL("image/png");
-      var doc = new jsPDF();
-      doc.addImage(image, "JPEG", 20, 20);
-      doc.save("test.pdf");
+			var doc = new jsPDF();
+			var svg = document.querySelectorAll(".list-group-item").children;
+										console.log(canvas)
+										var canvas2 = document.createElement('canvas');
+                    canvg(canvas2, svg);
+                    var imgData = canvas2.toDataURL('image/png');
+                    doc.addImage(imgData, 'PNG', 100, 150, 100, 100);
+    
+      doc.save("badge.pdf");
     });
   }
   // .getElementById(""
   render() {
     return (
-      <div>
+      <div className="wrapper">
       
-
+			<h1 className="text-center">Sameday Registration</h1>
         {/* <input onChange={this.handleInputChange} className="firstname" placeholder = "firstname" value={this.state.firstname}></input> */}
         <div className="col-md-6 samedayform">
           <div className="form-group">
@@ -108,7 +114,7 @@ class Sameday extends Component {
             />
             <input
               // onChange={(e) => this.setState({qrValue: e.target.value})}
-              value={this.state.laststname}
+              value={this.state.lastname}
               name="lastname"
               onChange={this.handleInputChange}
               type="text"
@@ -152,20 +158,53 @@ class Sameday extends Component {
               className="form-control"
             />
 
-            <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
+            {/* <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button> */}
             {/* <button onClick={this.readFile} className="reportButton">Report</button> */}
           </div>
         </div>
+				<div clasName="badgeContainer">
+{this.state.registered.length ? (
+	<List>
+			{this.state.registered.map(registered => (
+					<ListItem key={registered._id} id={registered._id}>
+							<Badge
+									firstname={registered.firstname}
+									lastname={registered.lastname}
+									position={registered.position}
+									company={registered.company}
+							/>
+							<div style={{ margin: "0 auto !important"}} className="text-center">
+									<QRCode
+											style={{ width: 256, margin: '0 auto' }}
+											value={JSON.stringify({
+													firstname: registered.firstname,
+													lastname: registered.lastname,
+													company: registered.company,
+													position: registered.position,
+													email: registered.email,
+													phone: registered.phone
+											})}
+									/>
+							</div>
+							
+					</ListItem>
+			))}
+	</List>
 
-        <Badge
+) : (
+	<h3></h3>
+)}
+		
+       <Badge
           firstname={this.state.firstname}
-          lastname={this.state.lastname}
+					lastname={this.state.lastname}
+					position={this.state.position}
           company={this.state.company}
-          qrValue={this.state.qrValue}
-        />
-        <div className="qrCode">
+					qrValue={this.state.qrValue}
+        /> 
+         <div className="qrCode" className="text-center">
           <QRCode
-            className="qr-code"
+						className="qr-code"
             value={JSON.stringify({
               firstname: this.state.firstname,
               lastname: this.state.lastname,
@@ -176,8 +215,11 @@ class Sameday extends Component {
             })}
           />
         </div>
-        <button onClick={this.getPDF} className="saveDataButton">Create PDF</button>
-      </div>
+				<div className="text-center" style={{ padding: "30px 0 0 0"}}>
+        <button onClick={this.getPDF} className="saveDataButton text-center" style={{ margin: '0 auto'}}>Create PDF</button>
+				</div>
+			</div>
+			</div>
     );
   }
 }

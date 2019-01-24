@@ -8,6 +8,7 @@ class GlobalState extends Component {
 			test: "I am the test",
 			vendor:"",
 			authenticated: false,
+			adminAuthenticated: false,
 			authRes: null
 		}
 	}
@@ -19,23 +20,42 @@ class GlobalState extends Component {
 	}
 	
 	setAuthRes = (authStatus) => {
-		this.setState({
-			authRes: authStatus,
-			vendor: authStatus.user.username,
-			authenticated: true,
-		})
-		this.props.history.push('/profile')
+		if (authStatus.user.Username === "Admin"){
+			this.setState({
+				authRes: authStatus,
+				vendor: authStatus.user.Company,
+				authenticated: true,
+				adminAuthenticated:true
+			})
+			this.props.history.push('/admin')
+
+		}
+		else {
+
+			this.setState({
+				authRes: authStatus,
+				vendor: authStatus.user.Company,
+				authenticated: true,
+			})
+
+			this.props.history.push('/profile')
+		}
 	}
 
 	logOut = () =>{
 		this.setState({
-			authenticated: false,
+			authenticated: true,
 			vendor: "",
 			authRes: null
 		})
 		this.props.history.push('/login')
 		console.log("Logged out successfully")
 		
+	}
+
+
+	setPage = (page) => {
+		this.props.history.push(page)
 	}
 
 	render() {
@@ -46,7 +66,8 @@ class GlobalState extends Component {
 					state: this.state,
 					updateVendor: this.updateVendor,
 					setAuthRes: this.setAuthRes,
-					logOut: this.logOut
+					logOut: this.logOut,
+					setPage:this.setPage
 				}}
 			>
 				{this.props.children}
