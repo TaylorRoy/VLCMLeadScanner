@@ -24,6 +24,16 @@ export default {
 
 	saveAttendee:  function(attendee) {
 		return axios.post("/api/attendee/add",attendee)
+	},
+
+
+	verifySignIn: function () {
+		return axios.get('/api/vendor/login')
+	},
+
+
+	signOut: function () {
+		return axios.get('/api/vendor/logout')
 	}
   // Gets the book with the given id
   // getBooks: function(id) {
