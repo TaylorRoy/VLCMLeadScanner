@@ -7,7 +7,8 @@ class GlobalState extends Component {
 		this.state = {
 			test: "I am the test",
 			vendor:"",
-			authenticated: true,
+			authenticated: false,
+			adminAuthenticated: false,
 			authRes: null
 		}
 	}

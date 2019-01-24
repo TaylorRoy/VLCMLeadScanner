@@ -173,6 +173,12 @@ class Profile extends Component {
 		this.props.global.setPage("/ManualLead")
 	}
 
+	deleteLead = id => {
+    API.deleteLead(id)
+      .then(res => this.loadLeads())
+      .catch(err => console.log(err));
+  };
+
 
 
 	render() {
@@ -266,7 +272,7 @@ class Profile extends Component {
 										<br></br>
 										<span className="leadPosition">{lead.company}</span>
 									</a>
-									<DeleteBtn />
+									<DeleteBtn onClick={() => this.deleteLead(lead._id)} />
 								</ListItem>
 							))}
 						</List>
