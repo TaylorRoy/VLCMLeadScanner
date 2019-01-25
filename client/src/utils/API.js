@@ -8,7 +8,7 @@ export default {
 
 
   login: function (req) {
-    console.log("logging in", req);
+    
     return axios.post("/api/vendor/login", req)
   },
 
