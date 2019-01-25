@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(session({
-	secret: "skippy boo bop",
+	secret: process.env.secret || "skebopboo",
   resave: true,
   saveUninitialized: false,
   cookie: { maxAge: (1000*60*60*24*14) }

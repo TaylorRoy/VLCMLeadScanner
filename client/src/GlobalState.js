@@ -1,4 +1,5 @@
 import React,{Component,createContext} from "react";
+import API from "./utils/API";
 const {Provider, Consumer} = createContext()
 
 class GlobalState extends Component {
@@ -43,11 +44,15 @@ class GlobalState extends Component {
 	}
 
 	logOut = () =>{
-		this.setState({
-			authenticated: true,
-			vendor: "",
-			authRes: null
-		})
+		API.signOut()
+		.then(res => {
+			this.handleAuthRes(res)
+			this.props.history.push('/login')
+			
+    }).catch(err => {
+      console.log(err)
+    })
+		
 		this.props.history.push('/login')
 		console.log("Logged out successfully")
 		
@@ -57,6 +62,32 @@ class GlobalState extends Component {
 	setPage = (page) => {
 		this.props.history.push(page)
 	}
+//verify login
+
+	componentWillMount(){
+    this.isSignedIn()
+  }
+
+  isSignedIn = () => {
+    
+		API.verifySignIn()
+		.then(res => {
+			this.handleAuthRes(res)
+			console.log("verify api call")
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
+  handleAuthRes = (res) => {
+		// if(res.data.message){alert(res.data.message)}
+		console.log(res)
+    this.setState({
+      username:res.data.user,
+      authenticated:res.data.auth,adminAuthenticated:res.data.admin
+    })
+  }
+	
 
 	render() {
 		console.log(this.state)
