@@ -157,7 +157,7 @@ class ManualLead extends Component {
               className="form-control"
             />
 
-            <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
+            <button onClick={this.handleFormSubmit} className="btn btn-lg saveDataButton">Save data</button>
             {/* <button onClick={this.readFile} className="reportButton">Report</button> */}
           </div>
         </div>

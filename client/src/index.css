@@ -88,10 +88,42 @@ a {
 	padding-top: 40px;
 }
 
+.manualEnterBtn {
+	margin: 0 auto;
+}
+
+.btnDiv {
+	padding: 10px;
+}
+
+
+
+
+@media screen and (max-width: 991px) {
+	.loginButton {
+		margin: 0 auto;
+	}
+}
+
 @media screen and (max-width: 610px) {
 	h1 {
 		font-size: 30px;
 		padding-top: 10px;
+	}
+}
+
+@media screen and (max-width: 599px) {
+	h1 {
+		font-size: 30px;
+		padding-top: 10px;
+	}
+	
+	input {
+		margin: 10px;
+	}
+
+	.loginButton {
+		margin-top: 10px;
 	}
 }
 
@@ -117,5 +149,21 @@ a {
 
 	.logout {
 		font-size: 20px
+	}
+}
+
+@media screen and (max-width: 344px) {
+	h1 {
+		font-size: 17px;
+		padding-top: 10px;
+	}
+
+	.logout {
+		font-size: 20px
+	}
+
+	input {
+		margin: 10px;
+		width: 300px;
 	}
 }
