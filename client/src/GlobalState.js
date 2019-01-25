@@ -19,6 +19,12 @@ class GlobalState extends Component {
 			vendor: event.target.value
 		})
 	}
+
+	checkUrlForRedirect = () => {
+    if(window.location.hash){
+      this.props.history.push(window.location.hash.split('#')[1])
+    }
+  }
 	
 	setAuthRes = (authStatus) => {
 		if (authStatus.user.Username === "Admin"){
@@ -65,7 +71,8 @@ class GlobalState extends Component {
 //verify login
 
 	componentWillMount(){
-    this.isSignedIn()
+		this.isSignedIn()
+		this.checkUrlForRedirect()
   }
 
   isSignedIn = () => {
