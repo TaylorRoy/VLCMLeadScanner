@@ -30,8 +30,8 @@ class Profile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			delay: 2000,
-			result: "No result"
+			delay: 2000
+			// result: "No result"
 		};
 		this.handleScan = this.handleScan.bind(this);
 	}
@@ -245,10 +245,10 @@ class Profile extends Component {
 				{/* buttons */}
 				<div className="row justify-content-center text-center">
 					<div className="addLeadBtns col-md-11 ">
-
-						<Link to="/ManualLead"><button className="manualEnterBtn col-md-3">Manually Enter Lead</button>
+					<div className="btnDiv">
+						<Link to="/ManualLead"><button className="manualEnterBtn btn btn-lg  text-center">Manually Enter Lead</button>
 						</Link>
-
+						</div>
 
 					</div>
 				</div>

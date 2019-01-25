@@ -61,14 +61,14 @@ class Login extends React.Component {
 									</Col>
 								</Row>
 								<Row>
-									<Col size="lg-12">
+									<Col size="lg-12justify-content-center">
 										<input name="password" type="password" className="password" placeholder="password" value={this.state.password}
 										onChange={this.handleInputChange}></input>
 									</Col>
 								</Row>
 								<Row>
 									<Col size="lg-12">
-										<button className="loginButton" placeholder="login" type="button" onClick={this.verifyLogin}>Login <i class="fas fa-angle-double-right"></i></button>
+										<button className="loginButton justify-content-center" placeholder="login" type="button" onClick={this.verifyLogin}>Login <i class="fas fa-angle-double-right"></i></button>
 
 									</Col>
 								</Row>

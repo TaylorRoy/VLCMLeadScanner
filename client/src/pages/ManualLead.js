@@ -156,8 +156,8 @@ class ManualLead extends Component {
               placeholder="Phone Number"
               className="form-control"
             />
-
-            <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button>
+					
+            <button onClick={this.handleFormSubmit} className="btn saveDataButton">Save data</button>
             {/* <button onClick={this.readFile} className="reportButton">Report</button> */}
           </div>
         </div>

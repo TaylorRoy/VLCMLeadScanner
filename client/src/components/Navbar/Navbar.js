@@ -20,6 +20,7 @@ class Navbar extends Component {
 			<Consumer>
 				{(global) => (
 
+					
 					<nav className="navbar navbar-expand-lg bg-dark justify-content-center" style={{textAlign: 'center'}}>
 						{<h1>{global.state.vendor}</h1>}
 
