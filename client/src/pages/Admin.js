@@ -1,7 +1,5 @@
 import React, { Component} from "react";
 import { Link } from 'react-router-dom'
-import API from "../utils/API";
-import Navbar from "../components/Navbar";
 import Consumer from './../GlobalState'
 
 
