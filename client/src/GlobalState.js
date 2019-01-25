@@ -80,7 +80,7 @@ class GlobalState extends Component {
 		API.verifySignIn()
 		.then(res => {
 			this.handleAuthRes(res)
-			console.log("verify api call")
+			
     }).catch(err => {
       console.log(err)
     })
@@ -97,7 +97,7 @@ class GlobalState extends Component {
 	
 
 	render() {
-		console.log(this.state)
+		
 		return (
 			<Provider
 				value={{

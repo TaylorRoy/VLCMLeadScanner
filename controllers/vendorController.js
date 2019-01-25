@@ -12,7 +12,7 @@ module.exports = {
 				if (err) {
 					return res.sendStatus(500)
 				}
-				if (data.Username === "Admin") {
+				if (data && data.Username === "Admin") {
 					req.session.user = data
 					req.session.auth = true
 					req.session.admin = true
@@ -32,6 +32,8 @@ module.exports = {
 					res.json(req.session)
 
 				}
+
+			
 			})
 
 
