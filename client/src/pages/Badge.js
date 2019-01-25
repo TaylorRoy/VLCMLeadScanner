@@ -12,48 +12,48 @@ import { QRCode } from 'react-qr-svg';
 
 class Sameday extends Component {
 
-    // Setting our component's initial state
-    state = {
-        leads: [],
-        firstname: "",
-        lastname: "",
-        company: "",
-        position: "",
-        email: "",
-        phone: "",
-        qrValue: ""
-    };
-    count = 0;
+	// Setting our component's initial state
+	state = {
+		leads: [],
+		firstname: "",
+		lastname: "",
+		company: "",
+		position: "",
+		email: "",
+		phone: "",
+		qrValue: ""
+	};
+	count = 0;
 
-    // Whens the component mounts, load all leads and save them to this.state.leads
-    componentDidMount() {
-        this.loadLeads();
-    }
+	// Whens the component mounts, load all leads and save them to this.state.leads
+	componentDidMount() {
+		this.loadLeads();
+	}
 
-    // Loads all leads  and sets them to this.state.leads
-    loadLeads = (res) => {
-        API.getLeads(res)
-            .then(res => this.setState({
-                leads: res.data,
-                firstname: "",
-                lastname: "",
-                company: "",
-                position: "",
-                email: "",
-                phone: "",
-            })
-            )
-            .catch(err => console.log(err));
-        console.log("leads", this.state.leads);
-    };
+	// Loads all leads  and sets them to this.state.leads
+	loadLeads = (res) => {
+		API.getLeads(res)
+			.then(res => this.setState({
+				leads: res.data,
+				firstname: "",
+				lastname: "",
+				company: "",
+				position: "",
+				email: "",
+				phone: "",
+			})
+			)
+			.catch(err => console.log(err));
+		console.log("leads", this.state.leads);
+	};
 
-    // Handles updating component state when the user types into the input field
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({
-            [name]: value
-        });
-    };
+	// Handles updating component state when the user types into the input field
+	handleInputChange = event => {
+		const { name, value } = event.target;
+		this.setState({
+			[name]: value
+		});
+	};
 
     //create PDF of just QR badge section of the Sameday page
     getPDF = () => {
@@ -92,18 +92,18 @@ class Sameday extends Component {
         }
     }
 
-    render() {
-        return (
-            <div>
-                <h1 className="text-center">Welcome Company</h1>
-                <h3 className="text-center">
-                    Badges Page
+	render() {
+		return (
+			<div>
+				<h1 className="text-center">Welcome Company</h1>
+				<h3 className="text-center">
+					Badges Page
         </h3>
-                {/* <input onChange={this.handleInputChange} className="firstname" placeholder = "firstname" value={this.state.firstname}></input> */}
+				{/* <input onChange={this.handleInputChange} className="firstname" placeholder = "firstname" value={this.state.firstname}></input> */}
 
-                <button onClick={this.loadLeads} className="saveDataButton">Show Leads from Database</button>
-                <button onClick={this.readFile} className="reportButton">Export CSV Report</button>
-                <button onClick={this.getPDF} className="saveDataButton">Create Badge PDF Files</button>
+				<button onClick={this.loadLeads} className="saveDataButton">Show Leads from Database</button>
+				<button onClick={this.readFile} className="reportButton">Export CSV Report</button>
+				<button onClick={this.getPDF} className="saveDataButton">Create Badge PDF Files</button>
 
                 <Jumbotron>
                     <h1>List of Badges</h1>

@@ -39,11 +39,7 @@
 	input {
 	margin: 10%;
 	}
-	button {
-		margin-left: 10%;
-		margin-bottom: 7px;
-
-	}
+	
 	}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -69,14 +65,9 @@
 	}
 	input {
 	margin:10px;
-	flex: auto;
+	
 	}
-	button {
-		margin-left: 20%;
-		width: 20%;
-		margin-top: 10px;
-		}
-
+	
 
 }
 
@@ -103,11 +94,11 @@
 	}
 	input {
 	margin:10px;
-	flex: auto;
+
 	}
 	button {
 		margin-top: 10px;
-		margin-left: 34%;
+		
 	}
 
 }
