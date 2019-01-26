@@ -16,6 +16,7 @@
     "mongodb": "^3.1.10",
     "mongoose": "^5.4.0",
     "react": "^16.7.0",
+    "react-animations": "^1.0.0",
     "react-files": "^2.4.8",
     "react-qr-reader": "^2.1.2",
     "react-qr-svg": "^2.1.0",
@@ -28,12 +29,12 @@
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-		"client": "cd client && npm run start",
-		"vendor-seed": "node scripts/vendorSeed.js",
-		"attendee-seed": "node scripts/attendeeSeed.js",
+    "client": "cd client && npm run start",
+    "vendor-seed": "node scripts/vendorSeed.js",
+    "attendee-seed": "node scripts/attendeeSeed.js",
     "install": "cd client && yarn install",
-		"build": "cd client && npm run build",
-		"heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
