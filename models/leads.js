@@ -8,8 +8,12 @@ const leadSchema = new Schema({
   position: { type: String, required: true },
   email: { type: String, required: true },
   phone: { type: String, required: true },
-  date: { type: Date, default: Date.now }
+	date: { type: Date, default: Date.now },
+	vendor: {type: String, required: true}
 });
+
+
+
 
 const Lead = mongoose.model("Lead", leadSchema);
 

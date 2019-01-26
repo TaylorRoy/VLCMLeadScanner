@@ -16,7 +16,9 @@ module.exports = {
   },
   findAll: function(req, res) {
     db.Lead
-      .find(req.query)
+      .find({
+				vendor: req.session.user._id
+			})
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -29,6 +31,7 @@ module.exports = {
   },
   create: function(req, res) {
 		console.log(req.body)
+		req.body.vendor = req.session.user._id
     // console.log("in create", req);
     db.Lead.create(req.body)
       .then(dbModel => res.json(dbModel))
