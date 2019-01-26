@@ -22,7 +22,7 @@ class Profile extends Component {
 		position: "",
 		email: "",
 		phone: "",
-		result: ""
+		result: "",
 	};
 	count = 0;
 
@@ -54,6 +54,15 @@ class Profile extends Component {
 			this.state.email = newObject.email;
 			this.state.phone = newObject.phone;
 
+					// add vibration
+					window.navigator.vibrate(200); 
+
+		
+					if (window.navigator.vibrate(200)) {
+						console.log("success in vibration")
+					} else {
+						console.log("this did not vibrate");
+					}
 
 
 			this.handleFormSubmit();
@@ -174,11 +183,22 @@ class Profile extends Component {
 	}
 
 	deleteLead = id => {
-    API.deleteLead(id)
-      .then(res => this.loadLeads())
-      .catch(err => console.log(err));
-  };
+		API.deleteLead(id)
+			.then(res => this.loadLeads())
+			.catch(err => console.log(err));
+	};
 
+	closeDeleteView = i => {
+		let leads = this.state.leads
+		leads[i].deleteView = false
+		this.setState({ leads })
+	}
+
+	openDeleteView = i => {
+		let leads = this.state.leads
+		leads[i].deleteView = true
+		this.setState({ leads })
+	}
 
 
 	render() {
@@ -196,58 +216,13 @@ class Profile extends Component {
 					/>
 					<p>{this.state.result}</p>
 				</div>
-				{/* <input onChange={this.handleInputChange} className="firstname" placeholder = "firstname" value={this.state.firstname}></input> */}
-				{/* <input
-          value={this.state.firstname}
-          name="firstname"
-          onChange={this.handleInputChange}
-          type="text"
-          placeholder="First Name"
-        />
-        <input
-          value={this.state.laststname}
-          name="lastname"
-          onChange={this.handleInputChange}
-          type="text"
-          placeholder="Last Name"
-        />
-        <input
-          value={this.state.company}
-          name="company"
-          onChange={this.handleInputChange}
-          type="text"
-          placeholder="Company Name"
-        />
-        <input
-          value={this.state.position}
-          name="position"
-          onChange={this.handleInputChange}
-          type="text"
-          placeholder="Position"
-        />
-        <input
-          value={this.state.email}
-          name="email"
-          onChange={this.handleInputChange}
-          type="text"
-          placeholder="Email"
-        />
-        <input
-          value={this.state.phone}
-          name="phone"
-          onChange={this.handleInputChange}
-          type="text"
-          placeholder="Phone Number"
-        /> */}
-
-				{/* <button onClick={this.handleFormSubmit} className="saveDataButton">Save data</button> */}
 
 				{/* buttons */}
 				<div className="row justify-content-center text-center">
 					<div className="addLeadBtns col-md-11 ">
-					<div className="btnDiv">
-						<Link to="/ManualLead"><button className="manualEnterBtn btn btn-lg  text-center">Manually Enter Lead</button>
-						</Link>
+						<div className="btnDiv">
+							<Link to="/ManualLead"><button className="manualEnterBtn btn btn-lg  text-center">Manually Enter Lead</button>
+							</Link>
 						</div>
 
 					</div>
@@ -259,8 +234,22 @@ class Profile extends Component {
 					{this.state.leads ? (
 						<List>
 							<button onClick={this.readFile} className="btn btn-link justify-content-left export">Export as a .csv</button>
-							{this.state.leads.map(lead => (
+							{this.state.leads.map((lead, i) => (
 								<ListItem key={lead._id}>
+									{ lead.deleteView && 
+										<div style={{ position: "absolute", height: "100% !important", width: "100%", backgroundColor: "black", padding: "5px"  }}>
+										<div style={{padding: "10px"}}>
+										
+											<span style={{ color: "white", fontSize: "20px", fontWeight: "700" }}>Delete?</span>
+										
+											<button className="btn btn-sm yesDeleteBtn" style={{ width: "20%", margin: "10px" }} onClick={() => this.deleteLead(lead._id)} >Yes</button>
+											
+
+											<button onClick={() => this.closeDeleteView(i)} className="btn btn-sm" style={{ width: "20%", margin: "10px" }}>No</button>
+											</div>
+										</div>
+									}
+
 									<a href={"/scans/" + lead._id}>
 										<strong>
 											{lead.firstname} {' '}
@@ -272,7 +261,7 @@ class Profile extends Component {
 										<br></br>
 										<span className="leadPosition">{lead.company}</span>
 									</a>
-									<DeleteBtn onClick={() => this.deleteLead(lead._id)} />
+									<DeleteBtn onClick={() => this.openDeleteView(i)} />
 								</ListItem>
 							))}
 						</List>

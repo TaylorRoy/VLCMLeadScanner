@@ -96,7 +96,9 @@ a {
 	padding: 10px;
 }
 
-
+.deleteQuestion {
+	background-color: black;
+}
 
 
 @media screen and (max-width: 991px) {
