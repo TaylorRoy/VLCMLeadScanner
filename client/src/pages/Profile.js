@@ -54,16 +54,7 @@ class Profile extends Component {
 			this.state.email = newObject.email;
 			this.state.phone = newObject.phone;
 
-					// add vibration
-					window.navigator.vibrate(200); 
-
 		
-					if (window.navigator.vibrate(200)) {
-						console.log("success in vibration")
-					} else {
-						console.log("this did not vibrate");
-					}
-
 
 			this.handleFormSubmit();
 
