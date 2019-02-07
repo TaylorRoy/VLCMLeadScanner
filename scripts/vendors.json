@@ -83,6 +83,11 @@
     "Company": "Commvault",
     "Username": "Commvault",
     "Password": "N2mcM9Wt"
+	},
+	{
+    "Company": "Crestron",
+    "Username": "Crestron",
+    "Password": "qpNpa8PF"
   },
   {
     "Company": "Dell EMC",
@@ -326,22 +331,22 @@
   },
   {
     "Company": "VLCM MSP",
-    "Username": "VLCM MSP",
+    "Username": "VLCM-MSP",
     "Password": "UORE7xrq"
   },
   {
     "Company": "VLCM MPS",
-    "Username": "VLCM MPS",
+    "Username": "VLCM-MPS",
     "Password": "cUBTZNKy"
   },
   {
     "Company": "VLCM Professional Services",
-    "Username": "VLCM Professional Services",
+    "Username": "VLCM-Professional",
     "Password": "lIcFr9AX"
   },
   {
     "Company": "VLCM VCT",
-    "Username": "VLCM VCT",
+    "Username": "VLCM-VCT",
     "Password": "rmk9fNFx"
   },
   {
