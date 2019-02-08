@@ -160,8 +160,8 @@
     "Password": "MXEcOqTd"
   },
   {
-    "Company": "HPE",
-    "Username": "HPE",
+    "Company": "HPE Storage",
+    "Username": "HPE-Storage",
     "Password": "NffEU4FU"
   },
   {
@@ -363,5 +363,10 @@
     "Company": "TAMS",
     "Username": "TAMS",
     "Password": "lCaT29AX"
+	},
+	{
+    "Company": "HPE Server ",
+    "Username": "HPE-Server",
+    "Password": "BUTYbtM7"
   }
 ]
