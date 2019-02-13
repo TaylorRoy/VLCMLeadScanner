@@ -83,6 +83,11 @@
     "Company": "Commvault",
     "Username": "Commvault",
     "Password": "N2mcM9Wt"
+	},
+	{
+    "Company": "Crestron",
+    "Username": "Crestron",
+    "Password": "qpNpa8PF"
   },
   {
     "Company": "Dell EMC",
@@ -155,8 +160,8 @@
     "Password": "MXEcOqTd"
   },
   {
-    "Company": "HPE",
-    "Username": "HPE",
+    "Company": "HPE Storage",
+    "Username": "HPE-Storage",
     "Password": "NffEU4FU"
   },
   {
@@ -326,22 +331,22 @@
   },
   {
     "Company": "VLCM MSP",
-    "Username": "VLCM MSP",
+    "Username": "VLCM-MSP",
     "Password": "UORE7xrq"
   },
   {
     "Company": "VLCM MPS",
-    "Username": "VLCM MPS",
+    "Username": "VLCM-MPS",
     "Password": "cUBTZNKy"
   },
   {
     "Company": "VLCM Professional Services",
-    "Username": "VLCM Professional Services",
+    "Username": "VLCM-Professional",
     "Password": "lIcFr9AX"
   },
   {
     "Company": "VLCM VCT",
-    "Username": "VLCM VCT",
+    "Username": "VLCM-VCT",
     "Password": "rmk9fNFx"
   },
   {
@@ -353,5 +358,15 @@
     "Company": "VMware-Breakout",
     "Username": "VMware-Breakout",
     "Password": "itx@852"
+	},
+	{
+    "Company": "TAMS",
+    "Username": "TAMS",
+    "Password": "lCaT29AX"
+	},
+	{
+    "Company": "HPE Server",
+    "Username": "HPE-Server",
+    "Password": "BUTYbtM7"
   }
 ]
