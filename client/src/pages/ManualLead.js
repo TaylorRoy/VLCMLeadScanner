@@ -6,6 +6,7 @@ import API from "../utils/API";
 import Badge from "../components/Badge";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
+import swal from 'sweetalert';
 
 
 import { QRCode } from 'react-qr-svg';
@@ -61,7 +62,16 @@ class ManualLead extends Component {
   // When the form is submitted, use the API.saveLead method to save the lead data
   // Then reload leads from the database
   handleFormSubmit = event => {
-    event.preventDefault();
+		event.preventDefault();
+		swal({
+			title: "You did it!",
+			text: "Your lead has been added.",
+			icon: "success",
+			button: "Go Back to QR Scanner",
+		}).then(
+		function(){
+        window.location.href = ("/profile");
+		});
     API.saveLead({
       firstname: this.state.firstname,
       lastname: this.state.lastname,

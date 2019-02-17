@@ -28,14 +28,15 @@ class Admin extends Component {
 				{(global) => (
 					<div>
 
-						<div className="row justify-content-center text-center">
-							<button className="btn btn-lg sameDayBtn col-md-3" onClick={this.sameDay}>SAMEDAY</button>
-							<button className="btn btn-lg bulkBadgeBtn col-md-3"onClick={this.badgePage}>BADGES</button>
+						<div className="justify-content-center text-center" style={{margin:'30px 0'}}>
+							<button className="btn btn-lg sameDayBtn" onClick={this.sameDay}>SAMEDAY</button>
+	
+							<button className="btn btn-lg bulkBadgeBtn"onClick={this.badgePage}>BADGES</button>
 							<br></br>
 						</div>
-						<div className="row justify-content-center text-center col-md-6 viewLeads">
-							<button className="btn-block btn-lg btn viewAllLeads">VIEW ALL LEADS</button>
-						</div>
+						{/* <div className="row justify-content-center text-center col-md-6 viewLeads">
+							<button className="btn-block btn-lg btn viewAllLeads">VIEW ALL LEADS</button> 
+						</div> */}
 					</div>
 				)}
 
