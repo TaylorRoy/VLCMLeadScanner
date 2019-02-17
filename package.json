@@ -16,11 +16,13 @@
     "mongodb": "^3.1.10",
     "mongoose": "^5.4.0",
     "react": "^16.7.0",
+    "react-bootstrap-sweetalert": "^4.4.1",
     "react-dom": "^16.7.0",
     "react-files": "^2.4.8",
     "react-qr-reader": "^2.1.2",
     "react-qr-svg": "^2.1.0",
     "react-router-dom": "^4.3.1",
+    "sweetalert": "^2.1.2",
     "yarn.lock": "^0.0.1-security"
   },
   "engines": {

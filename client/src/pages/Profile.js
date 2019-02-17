@@ -4,9 +4,10 @@ import DeleteBtn from "../components/DeleteBtn";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
 import { Link } from 'react-router-dom'
-
+import swal from 'sweetalert';
 import QrReader from "react-qr-reader";
-import Consumer from './../GlobalState'
+import Consumer from './../GlobalState';
+
 
 class Profile extends Component {
 
@@ -65,6 +66,7 @@ class Profile extends Component {
 	}
 	handleError(err) {
 		console.error(err);
+		
 	}
 	// END OF QR CODE STUFF
 
@@ -153,7 +155,12 @@ class Profile extends Component {
 	// When the form is submitted, use the API.saveLead method to save the lead data
 	// Then reload lead from the database with loadLeads()
 	handleFormSubmit = event => {
-
+		swal({
+			title: "You did it!",
+			text: "Your lead has been scanned.",
+			icon: "success",
+			button: "Let's do it again!",
+		});
 		API.saveLead({
 			firstname: this.state.firstname,
 			lastname: this.state.lastname,
