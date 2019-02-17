@@ -1351,6 +1351,11 @@ stream-combiner@~0.0.4:
   dependencies:
     duplexer "~0.1.1"
 
+sweetalert2@^8.0.7:
+  version "8.0.7"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.0.7.tgz#c8208ac4d45906f620aca38c0c3f6734b9c34b66"
+  integrity sha512-UrCfHuz48XxIBef07rA3Mu536qWYjdMom3Yfc4tqO7pzNyoarNFWypflZv3AnaYNRGAege5giRrh//R3RmY2Hw==
+
 sweetalert@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/sweetalert/-/sweetalert-2.1.2.tgz#010baaa80d0dbdc86f96bfcaa96b490728594b79"

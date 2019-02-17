@@ -6,7 +6,7 @@ import API from "../utils/API";
 import Badge from "../components/Badge";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 
 import { QRCode } from 'react-qr-svg';
@@ -63,11 +63,11 @@ class ManualLead extends Component {
   // Then reload leads from the database
   handleFormSubmit = event => {
 		event.preventDefault();
-		swal({
-			title: "You did it!",
+		Swal.fire({
+			title: "Success!",
 			text: "Your lead has been added.",
-			icon: "success",
-			button: "Go Back to QR Scanner",
+			type: "success",
+			confirmButtonText: "Go Back to QR Scanner",
 		}).then(
 		function(){
         window.location.href = ("/profile");
