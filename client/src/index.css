@@ -101,21 +101,9 @@ a {
 }
 
 /* sweet alert */
-.swal-button {
-	background-color: #DDCA23;
-	padding: 7px 10px !important;
-	margin: 0 auto; 
-	text-shadow: none !important;
-	width: 100%;
-	color: white;
-	border: none;
-}
-.swal-button:hover {
-	background-color: black;
-	padding: 7px 10px !important;
-}
-.swal-button--cancel {
-	background: lightgray;
+.swal2-confirm,
+.swal2-styled {
+	background-color: #DECC49 !important;
 }
 
 

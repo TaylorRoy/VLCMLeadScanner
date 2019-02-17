@@ -4,7 +4,7 @@ import DeleteBtn from "../components/DeleteBtn";
 import { List } from "../components/List";
 import { ListItem } from "../components/List";
 import { Link } from 'react-router-dom'
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 import QrReader from "react-qr-reader";
 import Consumer from './../GlobalState';
 
@@ -155,11 +155,11 @@ class Profile extends Component {
 	// When the form is submitted, use the API.saveLead method to save the lead data
 	// Then reload lead from the database with loadLeads()
 	handleFormSubmit = event => {
-		swal({
-			title: "You did it!",
+		Swal.fire({
+			title: "Success!",
 			text: "Your lead has been scanned.",
-			icon: "success",
-			button: "Let's do it again!",
+			type: "success",
+			confirmButtonText: "Let's do it again",
 		});
 		API.saveLead({
 			firstname: this.state.firstname,
